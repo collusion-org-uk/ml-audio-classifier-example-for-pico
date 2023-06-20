@@ -11,7 +11,7 @@
 #include "hardware/pwm.h"
 
 extern "C" {
-#include "pico/analog_microphone.h"
+#include "pico/pdm_microphone.h"
 }
 
 #include "tflite_model.h"
@@ -26,12 +26,25 @@ extern "C" {
 #define INPUT_BUFFER_SIZE ((FFT_SIZE / 2) * SPECTRUM_SHIFT)
 #define INPUT_SHIFT       0
 
-// configuration
-const struct analog_microphone_config config = {
-  .gpio = 26,
-  .bias_voltage = 1.25,
-  .sample_rate = SAMPLE_RATE,
-  .sample_buffer_size = INPUT_BUFFER_SIZE,
+// microphone configuration
+const struct pdm_microphone_config pdm_config = {
+    // GPIO pin for the PDM DAT signal
+    .gpio_data = 2,
+
+    // GPIO pin for the PDM CLK signal
+    .gpio_clk = 3,
+
+    // PIO instance to use
+    .pio = pio0,
+
+    // PIO State Machine instance to use
+    .pio_sm = 0,
+
+    // sample rate in Hz
+    .sample_rate = SAMPLE_RATE,
+
+    // number of samples to buffer
+    .sample_buffer_size = INPUT_BUFFER_SIZE,
 };
 
 q15_t capture_buffer_q15[INPUT_BUFFER_SIZE];
@@ -46,7 +59,7 @@ int8_t* scaled_spectrum = nullptr;
 int32_t spectogram_divider;
 float spectrogram_zero_point;
 
-void on_analog_samples_ready();
+void on_pdm_samples_ready();
 
 int main( void )
 {
@@ -69,44 +82,32 @@ int main( void )
     if (!ml_model.init()) {
         printf("Failed to initialize ML model!\n");
         while (1) { tight_loop_contents(); }
-	}
-	else {
-		printf("Initialized ML model!\n");
-	}
+    }
 
     if (!dsp_pipeline.init()) {
         printf("Failed to initialize DSP Pipeline!\n");
         while (1) { tight_loop_contents(); }
     }
-	else {
-		printf("Initialized DSP Pipeline!\n");
-	}
 
     scaled_spectrum = (int8_t*)ml_model.input_data();
     spectogram_divider = 64 * ml_model.input_scale(); 
     spectrogram_zero_point = ml_model.input_zero_point();
 
-    // initialize the analog microphone
-    if (analog_microphone_init(&config) < 0) {
-        printf("Analog microphone initialization failed!\n");
+    // initialize the PDM microphone
+    if (pdm_microphone_init(&pdm_config) < 0) {
+        printf("PDM microphone initialization failed!\n");
         while (1) { tight_loop_contents(); }
-	}
-	else {
-		printf("Analog microphone initialization suceeded!\n");
-	}
+    }
 
     // set callback that is called when all the samples in the library
     // internal sample buffer are ready for reading
-	analog_microphone_set_samples_ready_handler(on_analog_samples_ready);
+    pdm_microphone_set_samples_ready_handler(on_pdm_samples_ready);
 
-    // start capturing data from the analog microphone
-    if (analog_microphone_start() < 0) {
-        printf("Analog microphone start failed!\n");
+    // start capturing data from the PDM microphone
+    if (pdm_microphone_start() < 0) {
+        printf("PDM microphone start failed!\n");
         while (1) { tight_loop_contents(); }
     }
-	else {
-		printf("Analog microphone initialization suceeded!\n");
-	}
 
     while (1) {
         // wait for new samples
@@ -145,12 +146,11 @@ int main( void )
     return 0;
 }
 
-
-void on_analog_samples_ready()
+void on_pdm_samples_ready()
 {
-	// Callback from library when all the samples in the library
-	// internal sample buffer are ready for reading.
-	//
-	// Read new samples into local buffer.
-	analog_microphone_read(capture_buffer_q15, INPUT_BUFFER_SIZE);
+    // callback from library when all the samples in the library
+    // internal sample buffer are ready for reading 
+
+    // read in the new samples
+    new_samples_captured = pdm_microphone_read(capture_buffer_q15, INPUT_BUFFER_SIZE);
 }
