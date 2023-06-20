@@ -69,12 +69,18 @@ int main( void )
     if (!ml_model.init()) {
         printf("Failed to initialize ML model!\n");
         while (1) { tight_loop_contents(); }
-    }
+	}
+	else {
+		printf("Initialized ML model!\n");
+	}
 
     if (!dsp_pipeline.init()) {
         printf("Failed to initialize DSP Pipeline!\n");
         while (1) { tight_loop_contents(); }
     }
+	else {
+		printf("Initialized DSP Pipeline!\n");
+	}
 
     scaled_spectrum = (int8_t*)ml_model.input_data();
     spectogram_divider = 64 * ml_model.input_scale(); 
@@ -84,7 +90,10 @@ int main( void )
     if (analog_microphone_init(&config) < 0) {
         printf("Analog microphone initialization failed!\n");
         while (1) { tight_loop_contents(); }
-    }
+	}
+	else {
+		printf("Analog microphone initialization suceeded!\n");
+	}
 
     // set callback that is called when all the samples in the library
     // internal sample buffer are ready for reading
@@ -95,6 +104,9 @@ int main( void )
         printf("Analog microphone start failed!\n");
         while (1) { tight_loop_contents(); }
     }
+	else {
+		printf("Analog microphone initialization suceeded!\n");
+	}
 
     while (1) {
         // wait for new samples
