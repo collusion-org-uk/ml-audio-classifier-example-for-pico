@@ -28,7 +28,7 @@ extern "C" {
 #define INPUT_SHIFT       0
 
 // microphone configuration
-const struct pdm_microphone_config pdm_config = {
+/*const struct pdm_microphone_config pdm_config = {
     // GPIO pin for the PDM DAT signal
     .gpio_data = 2,
 
@@ -46,7 +46,7 @@ const struct pdm_microphone_config pdm_config = {
 
     // number of samples to buffer
     .sample_buffer_size = INPUT_BUFFER_SIZE,
-};
+};*/
 
 q15_t capture_buffer_q15[INPUT_BUFFER_SIZE];
 volatile int new_samples_captured = 0;
@@ -60,7 +60,7 @@ int8_t* scaled_spectrum = nullptr;
 int32_t spectogram_divider;
 float spectrogram_zero_point;
 
-void on_pdm_samples_ready();
+//void on_pdm_samples_ready();
 
 int main( void )
 {
@@ -95,20 +95,20 @@ int main( void )
     spectrogram_zero_point = ml_model.input_zero_point();
 
     // initialize the PDM microphone
-    if (pdm_microphone_init(&pdm_config) < 0) {
-        printf("PDM microphone initialization failed!\n");
-        while (1) { tight_loop_contents(); }
-    }
+    //if (pdm_microphone_init(&pdm_config) < 0) {
+    //    printf("PDM microphone initialization failed!\n");
+    //    while (1) { tight_loop_contents(); }
+    //}
 
     // set callback that is called when all the samples in the library
     // internal sample buffer are ready for reading
-    pdm_microphone_set_samples_ready_handler(on_pdm_samples_ready);
+    //pdm_microphone_set_samples_ready_handler(on_pdm_samples_ready);
 
     // start capturing data from the PDM microphone
-    if (pdm_microphone_start() < 0) {
-        printf("PDM microphone start failed!\n");
-        while (1) { tight_loop_contents(); }
-    }
+    //if (pdm_microphone_start() < 0) {
+    //    printf("PDM microphone start failed!\n");
+    //    while (1) { tight_loop_contents(); }
+    //}
 
     while (1) {
         // wait for new samples
@@ -148,11 +148,11 @@ int main( void )
     return 0;
 }
 
-void on_pdm_samples_ready()
+/*void on_pdm_samples_ready()
 {
     // callback from library when all the samples in the library
     // internal sample buffer are ready for reading 
 
     // read in the new samples
     new_samples_captured = pdm_microphone_read(capture_buffer_q15, INPUT_BUFFER_SIZE);
-}
+}*/
