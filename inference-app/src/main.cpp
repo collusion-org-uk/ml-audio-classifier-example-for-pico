@@ -112,7 +112,7 @@ int main( void )
     while (1) {
         // wait for new samples
         while (new_samples_captured == 0) {
-			printf("nothing\n", prediction);
+			printf("nothing\n");
             tight_loop_contents();
         }
         new_samples_captured = 0;
