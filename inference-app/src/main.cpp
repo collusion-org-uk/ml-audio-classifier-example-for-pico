@@ -27,7 +27,16 @@ extern "C" {
 #define INPUT_BUFFER_SIZE ((FFT_SIZE / 2) * SPECTRUM_SHIFT)
 #define INPUT_SHIFT       0
 
+
 // microphone configuration
+const struct analog_microphone_config config = {
+  .gpio = 26,
+  .bias_voltage = 1.25,
+  .sample_rate = SAMPLE_RATE,
+  .sample_buffer_size = INPUT_BUFFER_SIZE,
+};
+
+
 /*const struct pdm_microphone_config pdm_config = {
     // GPIO pin for the PDM DAT signal
     .gpio_data = 2,
@@ -60,6 +69,8 @@ int8_t* scaled_spectrum = nullptr;
 int32_t spectogram_divider;
 float spectrogram_zero_point;
 
+// callback functions
+void on_analog_samples_ready();
 //void on_pdm_samples_ready();
 
 int main( void )
@@ -93,6 +104,12 @@ int main( void )
     scaled_spectrum = (int8_t*)ml_model.input_data();
     spectogram_divider = 64 * ml_model.input_scale(); 
     spectrogram_zero_point = ml_model.input_zero_point();
+
+
+	// initialize and start the analog microphone
+	analog_microphone_init(&config);
+	analog_microphone_set_samples_ready_handler(on_analog_samples_ready);
+	analog_microphone_start();
 
     // initialize the PDM microphone
     //if (pdm_microphone_init(&pdm_config) < 0) {
@@ -156,3 +173,11 @@ int main( void )
     // read in the new samples
     new_samples_captured = pdm_microphone_read(capture_buffer_q15, INPUT_BUFFER_SIZE);
 }*/
+void on_analog_samples_ready()
+{
+	// Callback from library when all the samples in the library
+	// internal sample buffer are ready for reading.
+	//
+	// Read new samples into local buffer.
+	analog_microphone_read(sample_buffer, INPUT_BUFFER_SIZE);
+}
