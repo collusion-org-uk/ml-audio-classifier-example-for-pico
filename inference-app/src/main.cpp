@@ -112,6 +112,7 @@ int main( void )
     while (1) {
         // wait for new samples
         while (new_samples_captured == 0) {
+			printf("nothing\n", prediction);
             tight_loop_contents();
         }
         new_samples_captured = 0;
@@ -140,7 +141,7 @@ int main( void )
           printf("\t🔕\tNOT detected\t(prediction = %f)\n\n", prediction);
         }
 
-        pwm_set_chan_level(pwm_slice_num, pwm_chan_num, prediction * 255);
+        pwm_set_chan_level(pwm_slice_num, pwm_chan_num, 255); //prediction * 255);
     }
 
     return 0;
