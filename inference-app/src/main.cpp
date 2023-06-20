@@ -107,9 +107,18 @@ int main( void )
 
 
 	// initialize and start the analog microphone
-	analog_microphone_init(&config);
+	if (analog_microphone_init(&config) < 0) {
+	    printf("analog microphone initialization failed!\n");
+	    while (1) { tight_loop_contents(); }
+	}
+
 	analog_microphone_set_samples_ready_handler(on_analog_samples_ready);
-	analog_microphone_start();
+
+
+	if (analog_microphone_start() < 0) {
+        printf("analog microphone start failed!\n");
+        while (1) { tight_loop_contents(); }
+	}
 
     // initialize the PDM microphone
     //if (pdm_microphone_init(&pdm_config) < 0) {
@@ -173,11 +182,13 @@ int main( void )
     // read in the new samples
     new_samples_captured = pdm_microphone_read(capture_buffer_q15, INPUT_BUFFER_SIZE);
 }*/
+
+
 void on_analog_samples_ready()
 {
 	// Callback from library when all the samples in the library
 	// internal sample buffer are ready for reading.
 	//
 	// Read new samples into local buffer.
-	analog_microphone_read(capture_buffer_q15, INPUT_BUFFER_SIZE);
+	new_samples_captured = analog_microphone_read(capture_buffer_q15, INPUT_BUFFER_SIZE);
 }
