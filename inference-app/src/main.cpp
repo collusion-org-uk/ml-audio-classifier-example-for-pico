@@ -179,5 +179,5 @@ void on_analog_samples_ready()
 	// internal sample buffer are ready for reading.
 	//
 	// Read new samples into local buffer.
-	analog_microphone_read(sample_buffer, INPUT_BUFFER_SIZE);
+	analog_microphone_read(capture_buffer_q15, INPUT_BUFFER_SIZE);
 }
