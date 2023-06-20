@@ -12,6 +12,7 @@
 
 extern "C" {
 #include "pico/pdm_microphone.h"
+#include "pico/analog_microphone.h"
 }
 
 #include "tflite_model.h"
