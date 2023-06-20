@@ -140,7 +140,7 @@ int main( void )
         } else {
           printf("\t🔕\tNOT detected\t(prediction = %f)\n\n", prediction);
         }
-
+		printf("TEST\n");
         pwm_set_chan_level(pwm_slice_num, pwm_chan_num, 255); //prediction * 255);
     }
 
