@@ -31,7 +31,7 @@ extern "C" {
 // microphone configuration
 const struct analog_microphone_config config = {
   .gpio = 26,
-  .bias_voltage = 1.25,
+  .bias_voltage = 1.65,
   .sample_rate = SAMPLE_RATE,
   .sample_buffer_size = INPUT_BUFFER_SIZE,
 };
