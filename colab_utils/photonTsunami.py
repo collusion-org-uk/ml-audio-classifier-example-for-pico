@@ -67,6 +67,7 @@ def record_wav_file(folder):
         const writer = textEncoder.writable.getWriter();
 
         await writer.write("1");
+		await writer.releaseLock();
 	  }
 
       connectDisconnectButton.onclick = async () => {
