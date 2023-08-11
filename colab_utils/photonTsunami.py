@@ -35,6 +35,8 @@ def record_wav_file(folder):
       document.body.appendChild(linkElement);
 
       const connectDisconnectButton = document.createElement("button");
+	  
+
 
       connectDisconnectButton.innerHTML = "Connect Port";
 
@@ -47,8 +49,26 @@ def record_wav_file(folder):
 
       let port = undefined;
       let reader = undefined;
+      let writer = undefined;
       let keepReading = true;
       let term = undefined;
+	  
+	  
+	  // RH
+	  
+      const playTsumamiButton = document.createElement("button");	
+      playTsumamiButton.innerHTML = "Play next Tsunami clip";	
+	  document.querySelector("#output-area").appendChild(playTsumamiButton);
+	  // End RH
+	  
+	  playTsumamiButton.onclick = async () => {
+	    const textEncoder = new TextEncoderStream();
+        const writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
+
+        const writer = textEncoder.writable.getWriter();
+
+        await writer.write("1");
+	  }
 
       connectDisconnectButton.onclick = async () => {
         if (port !== undefined) {
