@@ -74,7 +74,7 @@ def record_wav_file(folder):
 	    const textEncoder = new TextEncoderStream();
         const writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
 
-        const writer = textEncoder.writable.getWriter();
+        writer = textEncoder.writable.getWriter();
 		await writer.write("1");
 
 	  }
