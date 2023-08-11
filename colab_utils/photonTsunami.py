@@ -62,12 +62,21 @@ def record_wav_file(folder):
 	  // End RH
 	  
 	  playTsumamiButton.onclick = async () => {
+	    if (port !== undefined) {
+          if (writer !== undefined) {
+		     await writer.write("1");
+			 
+
+		  }
+		  return;
+		}
+		  
 	    const textEncoder = new TextEncoderStream();
         const writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
 
         const writer = textEncoder.writable.getWriter();
+		await writer.write("1");
 
-        await writer.write("1");
 	  }
 
       connectDisconnectButton.onclick = async () => {
