@@ -52,7 +52,10 @@ def record_wav_file(folder):
       let keepReading = true;
       let term = undefined;
 	  
-	  
+	  const textEncoder = new TextEncoderStream();
+      const writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
+
+      const writer = textEncoder.writable.getWriter();
 	  // RH
 	  
       const playTsumamiButton = document.createElement("button");	
@@ -61,13 +64,10 @@ def record_wav_file(folder):
 	  // End RH
 	  
 	  playTsumamiButton.onclick = async () => {
-	    const textEncoder = new TextEncoderStream();
-        const writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
-
-        const writer = textEncoder.writable.getWriter();
+	    
 
         await writer.write("1");
-		await writer.releaseLock();
+
 	  }
 
       connectDisconnectButton.onclick = async () => {
@@ -118,6 +118,7 @@ def record_wav_file(folder):
             keepReading = false;
           } finally {
             await reader.releaseLock();
+			await writer.releaseLock();
           }
         }
         
