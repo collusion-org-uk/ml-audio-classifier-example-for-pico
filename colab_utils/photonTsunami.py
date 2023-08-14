@@ -52,10 +52,10 @@ def record_wav_file(folder):
       let keepReading = true;
       let term = undefined;
 	  
-	  const textEncoder = new TextEncoderStream();
-      const writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
+	  let textEncoder = new TextEncoderStream();
+      let writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
 
-      const writer = textEncoder.writable.getWriter();
+      let writer = textEncoder.writable.getWriter();
 	  // RH
 	  
       const playTsumamiButton = document.createElement("button");	
