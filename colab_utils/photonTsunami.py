@@ -24,6 +24,11 @@ def record_wav_file(folder):
   output.register_callback('notebook.save_wav_file', save_wav_file)
 
   display.display(display.Javascript("""
+  
+    const recorderJsScript = document.createElement("script");
+    const audioInputSelect = document.createElement("select");
+    const recordButton = document.createElement("button");
+	
   if ('serial' in navigator) {
       const scriptElement = document.createElement("script");
       scriptElement.src = "https://cdnjs.cloudflare.com/ajax/libs/xterm/3.14.5/xterm.min.js";
@@ -138,9 +143,7 @@ def record_wav_file(folder):
     }
   """+
   """
-    const recorderJsScript = document.createElement("script");
-    const audioInputSelect = document.createElement("select");
-    const recordButton = document.createElement("button");
+
 
     recorderJsScript.src = "https://sandeepmistry.github.io/Recorderjs/dist/recorder.js";
     recorderJsScript.type = "text/javascript";
