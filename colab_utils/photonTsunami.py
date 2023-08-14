@@ -119,8 +119,8 @@ def record_wav_file(folder):
                 keepReading = false;
                 break;
               }
-
-              term.write(decoder.decode(value, { stream: true }));
+			  message = decoder.decode(value, { stream: true });
+              term.write(message);
             }
           } catch (error) {
             keepReading = false;
