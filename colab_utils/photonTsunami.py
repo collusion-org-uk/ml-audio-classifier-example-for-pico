@@ -122,7 +122,7 @@ def record_wav_file(folder):
 			  message = decoder.decode(value, { stream: true });
 			  decodedMessage += message;
 			  let sDecodedMessage = String(decodedMessage);
-			  let n = sDecodedMessage.split("\\n");
+			  let n = sDecodedMessage.split("\\r");
 			  term.write(n.length);
 			  term.write("hello");
 			  if (message === "start"){
