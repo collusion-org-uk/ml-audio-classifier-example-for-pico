@@ -121,7 +121,7 @@ def record_wav_file(folder):
               }
 			  message = decoder.decode(value, { stream: true });
 			  decodedMessage += message;
-			  term.write(typeof(decodedMessage));
+			  String(decodedMessage).split('\n');;
 
 			  if (message === "start"){
 				term.write("yes - start");
