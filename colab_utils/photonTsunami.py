@@ -121,6 +121,7 @@ def record_wav_file(folder):
               }
 			  message = decoder.decode(value, { stream: true });
 			  decodedMessage += message;
+			  let i = decodedMessage.indexOf("\n",0);
 			  term.write(typeof(decodedMessage));
 
 			  if (message === "start"){
