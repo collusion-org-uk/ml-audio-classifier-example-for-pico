@@ -120,6 +120,7 @@ def record_wav_file(folder):
                 break;
               }
 			  message = decoder.decode(value, { stream: true });
+			  term.write(typeof(message));
 			  if (message === "start"){
 				term.write("yes - start");
 			  }
