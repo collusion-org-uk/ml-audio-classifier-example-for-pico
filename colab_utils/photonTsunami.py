@@ -108,7 +108,7 @@ def record_wav_file(folder):
         term.clear();
     
         const decoder = new TextDecoder();
-		let decodedMessage = "";
+
         while (port && keepReading) {
           try {
             reader = port.readable.getReader();
@@ -120,7 +120,7 @@ def record_wav_file(folder):
                 break;
               }
 			  message = decoder.decode(value, { stream: true });
-			  decodedMessage += message;
+
 			  
 
 			  if (message === "start"){
