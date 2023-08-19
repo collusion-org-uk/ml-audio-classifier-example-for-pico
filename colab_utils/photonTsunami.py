@@ -147,7 +147,9 @@ def record_wav_file(folder):
           } catch (error) {
             keepReading = false;
           } finally {
-            await reader.releaseLock();
+		  		reader.close();
+				await readableStreamClosed;
+				await reader.releaseLock();
           }
         }
         
