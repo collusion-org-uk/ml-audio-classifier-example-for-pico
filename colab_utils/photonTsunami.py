@@ -26,8 +26,14 @@ def record_wav_file(folder):
   display.display(display.Javascript("""
   
     const recorderJsScript = document.createElement("script");
+	const LineStreamRecrderJsScript = document.createElement("script");
     const audioInputSelect = document.createElement("select");
     const recordButton = document.createElement("button");
+	
+	LineStreamRecrderJsScript.src = "/nbextensions/google.colab/LineStreamTransformer.js";
+    LineStreamRecrderJsScript.type = "text/javascript";
+
+    document.body.append(LineStreamRecrderJsScript);
 	
   if ('serial' in navigator) {
       const scriptElement = document.createElement("script");
@@ -107,11 +113,15 @@ def record_wav_file(folder):
         }
         term.clear();
     
-        const decoder = new TextDecoder();
+        //const decoder = new TextDecoder();
+		const textDecoder = new TextDecoderStream();
+		const readableStreamClosed = port.readable.pipeTo(textDecoder.writable);
 		let decodedMessage = "";
         while (port && keepReading) {
           try {
-            reader = port.readable.getReader();
+		  
+		    reader = textDecoder.readable.pipeThrough(new TransformStream(new LineBreakTransformer())).getReader();
+            //reader = port.readable.getReader();
           
             while (true) {
               const { value, done } = await reader.read();
@@ -119,7 +129,7 @@ def record_wav_file(folder):
                 keepReading = false;
                 break;
               }
-			  message = decoder.decode(value, { stream: true });
+			  message = textDecoder.decode(value, { stream: true });
 			  decodedMessage += message;
 			  let sDecodedMessage = String(decodedMessage);
 			  //let n = decodedMessage.indexof("\\n",0);
