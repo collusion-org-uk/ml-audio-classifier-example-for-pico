@@ -28,6 +28,7 @@ def record_wav_file(folder):
     const recorderJsScript = document.createElement("script");
     const audioInputSelect = document.createElement("select");
     const recordButton = document.createElement("button");
+	const LineStreamRecrderJsScript = document.createElement("script");
 	LineStreamRecrderJsScript.src = "/nbextensions/google.colab/LineStreamTransformer.js";
     LineStreamRecrderJsScript.type = "text/javascript";
     document.body.append(LineStreamRecrderJsScript);
