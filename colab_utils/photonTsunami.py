@@ -81,13 +81,14 @@ def record_wav_file(folder):
 	  
 	  
 	  loopButton.onclick = async () => {
-        /*while (fileNum <100){
+        while (fileNum <5){
 		  if (!loopLock){
 		     let element = document.getElementById('play');
 		     element.click();
-			 await new Promise(resolve => setTimeout(resolve, 2000));
+			 
 		  }
-		}*/		
+		  await new Promise(resolve => setTimeout(resolve, 6000));
+		}		
 	  }
 	  
 	  
