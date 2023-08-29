@@ -90,7 +90,6 @@ def record_wav_file(folder):
             try {
               await reader.cancel();
 			  await readableStreamClosed.catch(() => { /* Ignore the error */ });
-			  await port.close();
             } catch (e) {}
           }
 
