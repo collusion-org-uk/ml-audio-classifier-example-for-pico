@@ -14,8 +14,9 @@ def record_wav_file(folder):
   def save_wav_file(folder, fileNum, s):
     b = base64.b64decode(s.split(',')[1])
     
+	file_name = "%s.wav" %(fileNum)
     #file_path = path.join(folder, datetime.now().strftime("%d-%m-%Y-%H-%M-%S.wav"))
-    file_path = path.join(folder, fileNum)
+    file_path = path.join(folder, file_name)
     print(f'Saving file: {file_path}')
     
     with open(file_path, 'wb') as f:
