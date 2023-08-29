@@ -140,6 +140,8 @@ def record_wav_file(folder):
 
 			  if (message === "start"){
 				term.write(message);
+				let element = document.querySelector('#recorder');
+				element.click();
 			  }
 			  if (message === "end"){
 				term.write(message);
@@ -177,6 +179,7 @@ def record_wav_file(folder):
     recorderJsScript.type = "text/javascript";
 
     recordButton.innerHTML = "⏺ Start Recording";
+	recordButton.id = "record";
 
     document.body.append(recorderJsScript);
     document.querySelector("#output-area").appendChild(audioInputSelect);
