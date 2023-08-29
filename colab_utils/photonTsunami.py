@@ -28,12 +28,14 @@ def record_wav_file(folder):
   
     const recorderJsScript = document.createElement("script");
     const audioInputSelect = document.createElement("select");
+    const loopButton = document.createElement("button");
     const recordButton = document.createElement("button");
 	const LineStreamRecrderJsScript = document.createElement("script");
 	LineStreamRecrderJsScript.src = "/nbextensions/google.colab/LineStreamTransformer.js";
     LineStreamRecrderJsScript.type = "text/javascript";
     document.body.append(LineStreamRecrderJsScript);
 	let fileNum = 0;
+    let loopLock = false;
 	
   if ('serial' in navigator) {
       const scriptElement = document.createElement("script");
@@ -67,13 +69,31 @@ def record_wav_file(folder):
 
 	  // RH
 	  
+	  loopButton.innerHTML = "Play all in sequence";	
+	  loopButton.id = "playAll";
+	  document.querySelector("#output-area").appendChild(loopButton);
+	  
+	  
       const playTsumamiButton = document.createElement("button");	
       playTsumamiButton.innerHTML = "Play next Tsunami clip";	
 	  playTsumamiButton.id = "play";
 	  document.querySelector("#output-area").appendChild(playTsumamiButton);
+	  
+	  
+	  loopButton.onclick = async () => {
+        while (fileNum <100){
+		  if (!loopLock){
+		     let element = document.getElementById('play');
+		     element.click();
+		  }
+		}		
+	  }
+	  
+	  
 	  // End RH
 	  
 	  playTsumamiButton.onclick = async () => {
+        loopLock=true;
 	    const textEncoder = new TextEncoderStream();
         const writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
 
@@ -241,6 +261,7 @@ def record_wav_file(folder):
               track.stop();
             }
           });
+		  loopLock=false;
         });
         return;
       }
