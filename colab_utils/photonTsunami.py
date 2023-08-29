@@ -11,11 +11,11 @@ from datetime import datetime
 from os import path
 
 def record_wav_file(folder):
-  def save_wav_file(folder, s):
+  def save_wav_file(folder, fileNum, s):
     b = base64.b64decode(s.split(',')[1])
     
-    file_path = path.join(folder, datetime.now().strftime("%d-%m-%Y-%H-%M-%S.wav"))
-    
+    #file_path = path.join(folder, datetime.now().strftime("%d-%m-%Y-%H-%M-%S.wav"))
+    file_path = path.join(folder, fileNum)
     print(f'Saving file: {file_path}')
     
     with open(file_path, 'wb') as f:
@@ -62,7 +62,7 @@ def record_wav_file(folder):
       let keepReading = true;
       let term = undefined;
 	  
-	  
+	  let fileNum = 1;
 	  // RH
 	  
       const playTsumamiButton = document.createElement("button");	
@@ -79,8 +79,8 @@ def record_wav_file(folder):
 		term.write(message);
 		let element = document.getElementById('record');
 		element.click();
-        await writer.write("1");
-		
+        await writer.write(fileNum);
+		fileNum++;
 		writer.close();
 		await writableStreamClosed;
 		await writer.releaseLock();
@@ -227,7 +227,7 @@ def record_wav_file(folder):
         recorder.exportWAV(async (blob) => {
           const text = await blob2text(blob);
 
-          google.colab.kernel.invokeFunction('notebook.save_wav_file', ['###folder###', text], {});
+          google.colab.kernel.invokeFunction('notebook.save_wav_file', ['###folder###', fileNum, text], {});
           
           recordButton.innerHTML = "⏺ Start Recording";
           recordButton.disabled = false;
