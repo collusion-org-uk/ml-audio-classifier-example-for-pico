@@ -78,6 +78,7 @@ def record_wav_file(folder):
 
 		term.write(message);
 		let element = document.getElementById('record');
+		element.click();
         await writer.write("1");
 		
 		writer.close();
@@ -141,7 +142,7 @@ def record_wav_file(folder):
 			  //term.write(n);
 
 			  if (message === "start"){
-				element.click();
+
 			  }
 			  if (message === "end"){
 				term.write(message);
