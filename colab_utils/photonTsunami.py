@@ -33,7 +33,7 @@ def record_wav_file(folder):
 	LineStreamRecrderJsScript.src = "/nbextensions/google.colab/LineStreamTransformer.js";
     LineStreamRecrderJsScript.type = "text/javascript";
     document.body.append(LineStreamRecrderJsScript);
-	let fileNum = 1;
+	let fileNum = 0;
 	
   if ('serial' in navigator) {
       const scriptElement = document.createElement("script");
@@ -81,8 +81,9 @@ def record_wav_file(folder):
 		term.write(message);
 		let element = document.getElementById('record');
 		element.click();
-        await writer.write(fileNum);
 		fileNum++;
+        await writer.write(fileNum);
+
 		writer.close();
 		await writableStreamClosed;
 		await writer.releaseLock();
