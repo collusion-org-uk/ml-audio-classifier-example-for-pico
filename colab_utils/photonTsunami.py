@@ -142,7 +142,7 @@ def record_wav_file(folder):
 			  //term.write(n);
 
 			  if (message === "start"){
-
+				term.write(message);
 			  }
 			  if (message === "end"){
 				term.write(message);
