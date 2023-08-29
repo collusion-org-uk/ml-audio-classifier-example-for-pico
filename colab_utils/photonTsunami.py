@@ -118,7 +118,7 @@ def record_wav_file(folder):
           try {
             //reader = port.readable.getReader();
 			readableStreamClosed = port.readable.pipeTo(decoder.writable);
-			reader = textDecoder.readable.pipeThrough(new TransformStream(new LineBreakTransformer())).getReader();
+			reader = decoder.readable.pipeThrough(new TransformStream(new LineBreakTransformer())).getReader();
             //reader = port.readable.pipeThrough(new TransformStream(new LineBreakTransformer())).getReader();
             while (true) {
               const { value, done } = await reader.read();
