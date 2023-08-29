@@ -85,6 +85,7 @@ def record_wav_file(folder):
 		  if (!loopLock){
 		     let element = document.getElementById('play');
 		     element.click();
+			 await new Promise(resolve => setTimeout(resolve, 2000));
 		  }
 		}		
 	  }
