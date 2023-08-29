@@ -89,6 +89,8 @@ def record_wav_file(folder):
             keepReading = false;
             try {
               await reader.cancel();
+			  await readableStreamClosed.catch(() => { /* Ignore the error */ });
+			  await port.close();
             } catch (e) {}
           }
           port = undefined;
@@ -153,7 +155,7 @@ def record_wav_file(folder):
 		//reader.cancel();
 		await readableStreamClosed.catch(() => { /* Ignore the error */ });
         //await port.close();
-		await port.forget();
+
 
         port = undefined;
         reader = undefined;
