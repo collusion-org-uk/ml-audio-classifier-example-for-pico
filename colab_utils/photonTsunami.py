@@ -112,7 +112,7 @@ def record_wav_file(folder):
         }
         term.clear();
     
-        const decoder = new TextDecoder();
+        const decoder = new TextDecoderStream();
 		let decodedMessage = "";
         while (port && keepReading) {
           try {
