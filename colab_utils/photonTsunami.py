@@ -32,6 +32,7 @@ def record_wav_file(folder):
 	LineStreamRecrderJsScript.src = "/nbextensions/google.colab/LineStreamTransformer.js";
     LineStreamRecrderJsScript.type = "text/javascript";
     document.body.append(LineStreamRecrderJsScript);
+	let fileNum = 1;
 	
   if ('serial' in navigator) {
       const scriptElement = document.createElement("script");
@@ -62,7 +63,7 @@ def record_wav_file(folder):
       let keepReading = true;
       let term = undefined;
 	  
-	  let fileNum = 1;
+
 	  // RH
 	  
       const playTsumamiButton = document.createElement("button");	
