@@ -69,6 +69,7 @@ def record_wav_file(folder):
 	  
       const playTsumamiButton = document.createElement("button");	
       playTsumamiButton.innerHTML = "Play next Tsunami clip";	
+	  playTsumamiButton.id = "play";
 	  document.querySelector("#output-area").appendChild(playTsumamiButton);
 	  // End RH
 	  
@@ -241,7 +242,10 @@ def record_wav_file(folder):
             }
           });
         });
-
+		if (fileNum < 100){
+            let element = document.getElementById('play');
+		    element.click();		
+		}
         return;
       }
 
