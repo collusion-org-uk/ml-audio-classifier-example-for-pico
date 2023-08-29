@@ -58,6 +58,7 @@ def record_wav_file(folder):
 
       let port = undefined;
       let reader = undefined;
+	  let readableStreamClosed = undefined;
       let keepReading = true;
       let term = undefined;
 	  
@@ -116,7 +117,7 @@ def record_wav_file(folder):
         while (port && keepReading) {
           try {
             //reader = port.readable.getReader();
-			const readableStreamClosed = port.readable.pipeThrough(new TransformStream(new LineBreakTransformer()));
+			readableStreamClosed = port.readable.pipeThrough(new TransformStream(new LineBreakTransformer()));
 			reader = readableStreamClosed.getReader();
             //reader = port.readable.pipeThrough(new TransformStream(new LineBreakTransformer())).getReader();
             while (true) {
