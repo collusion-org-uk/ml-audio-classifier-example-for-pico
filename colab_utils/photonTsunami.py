@@ -242,10 +242,6 @@ def record_wav_file(folder):
             }
           });
         });
-		if (fileNum < 100){
-            let element = document.getElementById('play');
-		    element.click();		
-		}
         return;
       }
 
