@@ -123,9 +123,10 @@ def record_wav_file(folder):
                 keepReading = false;
                 break;
               }
-			  message = decoder.decode(value, { stream: true });
-			  decodedMessage += message;
-			  let sDecodedMessage = String(decodedMessage);
+			  //message = decoder.decode(value, { stream: true });
+			  message = value;
+			  //decodedMessage += message;
+			  //let sDecodedMessage = String(decodedMessage);
 			  //let n = decodedMessage.indexof("\\n",0);
 			  //term.write(n);
 			  term.write("hello");
@@ -145,6 +146,8 @@ def record_wav_file(folder):
           }
         }
         
+		reader.cancel();
+		await readableStreamClosed.catch(() => { /* Ignore the error */ });
         await port.close();
 
         port = undefined;
