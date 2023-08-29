@@ -76,6 +76,8 @@ def record_wav_file(folder):
 
         const writer = textEncoder.writable.getWriter();
 
+		term.write(message);
+		let element = document.getElementById('record');
         await writer.write("1");
 		
 		writer.close();
@@ -139,12 +141,12 @@ def record_wav_file(folder):
 			  //term.write(n);
 
 			  if (message === "start"){
-				term.write(message);
-				let element = document.getElementById('record');
 				element.click();
 			  }
 			  if (message === "end"){
 				term.write(message);
+				let element = document.getElementById('record');
+				element.click();
 			  }
 			  
               //term.write(message);
