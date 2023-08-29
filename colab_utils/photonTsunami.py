@@ -115,8 +115,8 @@ def record_wav_file(folder):
 		let decodedMessage = "";
         while (port && keepReading) {
           try {
-            reader = port.readable.getReader().pipeThrough(new TransformStream(new LineBreakTransformer())).getReader();;
-          
+            //reader = port.readable.getReader();
+            reader = port.readable.pipeThrough(new TransformStream(new LineBreakTransformer())).getReader();;
             while (true) {
               const { value, done } = await reader.read();
               if (done) {
