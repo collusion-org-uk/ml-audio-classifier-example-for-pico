@@ -93,6 +93,9 @@ def record_wav_file(folder):
 			  await port.close();
             } catch (e) {}
           }
+
+		  await port.close();
+
           port = undefined;
           reader = undefined;
 
