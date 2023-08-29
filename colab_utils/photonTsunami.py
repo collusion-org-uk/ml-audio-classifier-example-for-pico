@@ -140,7 +140,7 @@ def record_wav_file(folder):
 
 			  if (message === "start"){
 				term.write(message);
-				let element = document.querySelector('#recorder');
+				let element = document.getElementById('recorder');
 				element.click();
 			  }
 			  if (message === "end"){
