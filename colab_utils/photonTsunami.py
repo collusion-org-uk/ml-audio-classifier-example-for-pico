@@ -124,6 +124,7 @@ def record_wav_file(folder):
               const { value, done } = await reader.read();
               if (done) {
                 keepReading = false;
+				reader.releaseLock();
                 break;
               }
 			  //message = decoder.decode(value, { stream: true });
