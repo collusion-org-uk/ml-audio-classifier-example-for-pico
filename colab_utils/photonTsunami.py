@@ -34,7 +34,7 @@ def record_wav_file(folder):
 	LineStreamRecrderJsScript.src = "/nbextensions/google.colab/LineStreamTransformer.js";
     LineStreamRecrderJsScript.type = "text/javascript";
     document.body.append(LineStreamRecrderJsScript);
-	let fileNum = 0;
+	let fileNum = 1391;
     let loopLock = false;
 	
   if ('serial' in navigator) {
