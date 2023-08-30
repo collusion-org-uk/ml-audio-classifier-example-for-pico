@@ -81,7 +81,7 @@ def record_wav_file(folder):
 	  
 	  
 	  loopButton.onclick = async () => {
-        while (fileNum <5){
+        while (fileNum <2001){
 		  if (!loopLock){
 		     let element = document.getElementById('play');
 		     element.click();
