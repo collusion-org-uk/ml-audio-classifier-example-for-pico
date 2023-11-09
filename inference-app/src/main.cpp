@@ -142,10 +142,10 @@ int main( void )
     }
 
      //set callback that is called when all the samples in the library
-     internal sample buffer are ready for reading
+     //internal sample buffer are ready for reading
     pdm_microphone_set_samples_ready_handler(on_pdm_samples_ready);
 
-     start capturing data from the PDM microphone
+     //start capturing data from the PDM microphone
     if (pdm_microphone_start() < 0) {
         printf("PDM microphone start failed!\n");
         while (1) { tight_loop_contents(); }
