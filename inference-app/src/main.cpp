@@ -9,6 +9,7 @@
 
 #include "pico/stdlib.h"
 #include "hardware/pwm.h"
+#include "hardware/uart.h"
 
 extern "C" {
 #include "pico/pdm_microphone.h"
@@ -28,16 +29,21 @@ extern "C" {
 #define INPUT_SHIFT       0
 
 
-// microphone configuration
-const struct analog_microphone_config config = {
-  .gpio = 26,
-  .bias_voltage = 1.65,
-  .sample_rate = SAMPLE_RATE,
-  .sample_buffer_size = INPUT_BUFFER_SIZE,
-};
+#define UART_ID uart0
+#define BAUD_RATE 9600
+#define UART_TX_PIN 0
+#define UART_RX_PIN 1
+
+//// microphone configuration
+//const struct analog_microphone_config config = {
+//  .gpio = 26,
+//  .bias_voltage = 1.65,
+//  .sample_rate = SAMPLE_RATE,
+//  .sample_buffer_size = INPUT_BUFFER_SIZE,
+//};
 
 
-/*const struct pdm_microphone_config pdm_config = {
+const struct pdm_microphone_config pdm_config = {
     // GPIO pin for the PDM DAT signal
     .gpio_data = 2,
 
@@ -55,7 +61,7 @@ const struct analog_microphone_config config = {
 
     // number of samples to buffer
     .sample_buffer_size = INPUT_BUFFER_SIZE,
-};*/
+};
 
 q15_t capture_buffer_q15[INPUT_BUFFER_SIZE];
 volatile int new_samples_captured = 0;
@@ -78,7 +84,16 @@ int main( void )
     // initialize stdio
     stdio_init_all();
 
-    printf("hello pico fire alarm detection\n");
+    //printf("hello pico fire alarm detection\n");
+
+
+     // Set up our UART with the required speed.
+    uart_init(UART_ID, BAUD_RATE);
+
+    // Set the TX and RX pins by using the function select on the GPIO
+    // Set datasheet for more information on function select
+    gpio_set_function(UART_TX_PIN, GPIO_FUNC_UART);
+    gpio_set_function(UART_RX_PIN, GPIO_FUNC_UART);
 
     gpio_set_function(PICO_DEFAULT_LED_PIN, GPIO_FUNC_PWM);
     
@@ -106,35 +121,35 @@ int main( void )
     spectrogram_zero_point = ml_model.input_zero_point();
 
 
-	// initialize and start the analog microphone
-	if (analog_microphone_init(&config) < 0) {
-	    printf("analog microphone initialization failed!\n");
-	    while (1) { tight_loop_contents(); }
-	}
+	//// initialize and start the analog microphone
+	//if (analog_microphone_init(&config) < 0) {
+	//    printf("analog microphone initialization failed!\n");
+	//    while (1) { tight_loop_contents(); }
+	//}
 
-	analog_microphone_set_samples_ready_handler(on_analog_samples_ready);
+	//analog_microphone_set_samples_ready_handler(on_analog_samples_ready);
 
 
-	if (analog_microphone_start() < 0) {
-        printf("analog microphone start failed!\n");
+	//if (analog_microphone_start() < 0) {
+ //       printf("analog microphone start failed!\n");
+ //       while (1) { tight_loop_contents(); }
+	//}
+
+     initialize the PDM microphone
+    if (pdm_microphone_init(&pdm_config) < 0) {
+        printf("PDM microphone initialization failed!\n");
         while (1) { tight_loop_contents(); }
-	}
+    }
 
-    // initialize the PDM microphone
-    //if (pdm_microphone_init(&pdm_config) < 0) {
-    //    printf("PDM microphone initialization failed!\n");
-    //    while (1) { tight_loop_contents(); }
-    //}
+     set callback that is called when all the samples in the library
+     internal sample buffer are ready for reading
+    pdm_microphone_set_samples_ready_handler(on_pdm_samples_ready);
 
-    // set callback that is called when all the samples in the library
-    // internal sample buffer are ready for reading
-    //pdm_microphone_set_samples_ready_handler(on_pdm_samples_ready);
-
-    // start capturing data from the PDM microphone
-    //if (pdm_microphone_start() < 0) {
-    //    printf("PDM microphone start failed!\n");
-    //    while (1) { tight_loop_contents(); }
-    //}
+     start capturing data from the PDM microphone
+    if (pdm_microphone_start() < 0) {
+        printf("PDM microphone start failed!\n");
+        while (1) { tight_loop_contents(); }
+    }
 
     while (1) {
         // wait for new samples
@@ -162,10 +177,14 @@ int main( void )
 
         float prediction = ml_model.predict();
 
-        if (prediction >= 0.5) {
-          printf("\t🔥 🔔\tdetected!\t(prediction = %f)\n\n", prediction);
+        if (prediction >= 0.9) {
+          uart_putc(UART_ID, '<');
+          uart_putc(UART_ID, '0');
+          uart_putc(UART_ID, '>');
+
+          //printf("\t🔥 🔔\tdetected!\t(prediction = %f)\n\n", prediction);
         } else {
-          printf("\t🔕\tNOT detected\t(prediction = %f)\n\n", prediction);
+          //printf("\t🔕\tNOT detected\t(prediction = %f)\n\n", prediction);
         }
 		//printf("TEST\n");
         pwm_set_chan_level(pwm_slice_num, pwm_chan_num, prediction * 255);
@@ -174,14 +193,14 @@ int main( void )
     return 0;
 }
 
-/*void on_pdm_samples_ready()
+void on_pdm_samples_ready()
 {
     // callback from library when all the samples in the library
     // internal sample buffer are ready for reading 
 
     // read in the new samples
     new_samples_captured = pdm_microphone_read(capture_buffer_q15, INPUT_BUFFER_SIZE);
-}*/
+}
 
 
 void on_analog_samples_ready()
