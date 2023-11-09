@@ -181,7 +181,6 @@ int main( void )
 
         if (prediction >= 0.9) {
             detected++;
-;
 
           //printf("\t🔥 🔔\tdetected!\t(prediction = %f)\n\n", prediction);
         } else {
@@ -191,7 +190,7 @@ int main( void )
         if (detected == 6) {
             uart_putc(UART_ID, '<');
             uart_putc(UART_ID, '0');
-            uart_putc(UART_ID, '>')
+            uart_putc(UART_ID, '>');
         }
         pwm_set_chan_level(pwm_slice_num, pwm_chan_num, prediction * 255);
     }
