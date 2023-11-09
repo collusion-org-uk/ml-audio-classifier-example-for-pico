@@ -77,7 +77,7 @@ float spectrogram_zero_point;
 
 // callback functions
 void on_analog_samples_ready();
-//void on_pdm_samples_ready();
+void on_pdm_samples_ready();
 
 int main( void )
 {
