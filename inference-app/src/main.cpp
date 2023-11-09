@@ -182,9 +182,9 @@ int main( void )
         if (prediction >= 0.9) {
             detected++;
 
-          //printf("\t🔥 🔔\tdetected!\t(prediction = %f)\n\n", prediction);
+          printf("\t🔥 🔔\tdetected!\t(prediction = %f)\n\n", prediction);
         } else {
-          //printf("\t🔕\tNOT detected\t(prediction = %f)\n\n", prediction);
+          printf("\t🔕\tNOT detected\t(prediction = %f)\n\n", prediction);
         }
 		//printf("TEST\n");
         if (detected == 6) {
