@@ -135,13 +135,13 @@ int main( void )
  //       while (1) { tight_loop_contents(); }
 	//}
 
-     initialize the PDM microphone
+     //initialize the PDM microphone
     if (pdm_microphone_init(&pdm_config) < 0) {
         printf("PDM microphone initialization failed!\n");
         while (1) { tight_loop_contents(); }
     }
 
-     set callback that is called when all the samples in the library
+     //set callback that is called when all the samples in the library
      internal sample buffer are ready for reading
     pdm_microphone_set_samples_ready_handler(on_pdm_samples_ready);
 
