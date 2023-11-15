@@ -188,7 +188,7 @@ int main( void )
             if (!detecting) {
                 //send value of notDetected and reset
                 uart_putc(UART_ID, '<');
-                uart_puts(UART_ID, std::to_string(notDetected));
+                uart_puts(UART_ID, std::to_string(notDetected).c_str());
                 uart_putc(UART_ID, '>');
                 notDetected = 0;
                 detecting = true;
@@ -201,7 +201,7 @@ int main( void )
             if (detecting) {
                 //send value of detected and reset
                 uart_putc(UART_ID, '<');
-                uart_puts(UART_ID, std::to_string(detected));
+                uart_puts(UART_ID, std::to_string(detected).c_str());
                 uart_putc(UART_ID, '>');
                 detected = 0;
                 detecting = false;
