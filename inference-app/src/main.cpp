@@ -21,6 +21,8 @@ extern "C" {
 #include "dsp_pipeline.h"
 #include "ml_model.h"
 
+using namespace std;
+
 // constants
 #define SAMPLE_RATE       16000
 #define FFT_SIZE          256
@@ -151,7 +153,9 @@ int main( void )
         while (1) { tight_loop_contents(); }
     }
 
+    bool detecting = false;
     int detected = 0;
+    int notDetected = 0;
 
     while (1) {
         // wait for new samples
@@ -180,18 +184,38 @@ int main( void )
         float prediction = ml_model.predict();
 
         if (prediction >= 0.9) {
+            
+            if (!detecting) {
+                //send value of notDetected and reset
+                uart_putc(UART_ID, '<');
+                uart_puts(UART_ID, std::to_string(notDetected));
+                uart_putc(UART_ID, '>');
+                notDetected = 0;
+                detecting = true;
+            } 
             detected++;
 
           printf("\t🔥 🔔\tdetected!\t(prediction = %f)\n\n", prediction);
         } else {
+
+            if (detecting) {
+                //send value of detected and reset
+                uart_putc(UART_ID, '<');
+                uart_puts(UART_ID, std::to_string(detected));
+                uart_putc(UART_ID, '>');
+                detected = 0;
+                detecting = false;
+            }
+            notDetected++;
+
           printf("\t🔕\tNOT detected\t(prediction = %f)\n\n", prediction);
         }
 		//printf("TEST\n");
-        if (detected == 6) {
+        /*if (detected == 6) {
             uart_putc(UART_ID, '<');
             uart_putc(UART_ID, '0');
             uart_putc(UART_ID, '>');
-        }
+        }*/
         pwm_set_chan_level(pwm_slice_num, pwm_chan_num, prediction * 255);
     }
 
