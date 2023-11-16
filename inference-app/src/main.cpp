@@ -190,6 +190,7 @@ int main( void )
                 uart_putc(UART_ID, '<');
                 uart_puts(UART_ID, std::to_string(notDetected).c_str());
                 uart_putc(UART_ID, '>');
+                printf("not detected %f \n\n", notDetected);
                 notDetected = 0;
                 detecting = true;
             } 
@@ -203,12 +204,13 @@ int main( void )
                 uart_putc(UART_ID, '<');
                 uart_puts(UART_ID, std::to_string(detected).c_str());
                 uart_putc(UART_ID, '>');
+                printf("detected %f \n\n", detected);
                 detected = 0;
                 detecting = false;
             }
             notDetected++;
 
-          printf("\t🔕\tNOT detected\t(prediction = %f)\n\n", prediction);
+          //printf("\t🔕\tNOT detected\t(prediction = %f)\n\n", prediction);
         }
 		//printf("TEST\n");
         /*if (detected == 6) {
