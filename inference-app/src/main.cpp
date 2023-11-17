@@ -181,7 +181,7 @@ int main( void )
             );
         }
 
-        struct mlResult prediction = ml_model.predict();
+        struct MLModel::mlResult prediction = ml_model.predict();
         printf("\ta\t(prediction = %f)\t", prediction.mlResults[0]);
         printf("\tb\t(prediction = %f)\t", prediction.mlResults[1]);
         printf("\tc\t(prediction = %f)\n", prediction.mlResults[2]);

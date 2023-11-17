@@ -89,7 +89,7 @@ void* MLModel::input_data()
 struct MLModel::mlResult MLModel::predict()
 {
     TfLiteStatus invoke_status = _interpreter->Invoke();
-    Struct mlResult r;
+    struct MLModel::mlResult r;
 
     if (invoke_status != kTfLiteOk) {
         return NAN;
