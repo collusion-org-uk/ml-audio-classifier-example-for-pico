@@ -86,18 +86,28 @@ void* MLModel::input_data()
     return _input_tensor->data.data;
 }
 
-float MLModel::predict()
+struct mlResult MLModel::predict()
 {
     TfLiteStatus invoke_status = _interpreter->Invoke();
+    Struct mlResult r;
 
     if (invoke_status != kTfLiteOk) {
         return NAN;
     }
 
-    float y_quantized = _output_tensor->data.int8[0];
-    float y = (y_quantized - _output_tensor->params.zero_point) * _output_tensor->params.scale;
+    float a_quantized = _output_tensor->data.int8[0];
+    float a = (a_quantized - _output_tensor->params.zero_point) * _output_tensor->params.scale;
+    float b_quantized = _output_tensor->data.int8[1];
+    float b = (b_quantized - _output_tensor->params.zero_point) * _output_tensor->params.scale;
+    float c_quantized = _output_tensor->data.int8[2];
+    float c = (c_quantized - _output_tensor->params.zero_point) * _output_tensor->params.scale;
 
-    return y;
+    r.mlResults[0] = a;
+    r.mlResults[1] = b;
+    r.mlResults[2] = c;
+
+   // return y;
+    return r;
 }
 
 float MLModel::input_scale() const

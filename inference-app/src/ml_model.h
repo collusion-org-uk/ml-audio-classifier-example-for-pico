@@ -14,12 +14,17 @@
 
 class MLModel {
     public:
+
+        struct mlResult {
+            float mlResults [3];
+        };
+
         MLModel(const unsigned char tflite_model[], int tensor_arena_size);
         virtual ~MLModel();
 
         int init();
         void* input_data();
-        float predict();
+        mlResult predict();
 
         float input_scale() const;
         int32_t input_zero_point() const;

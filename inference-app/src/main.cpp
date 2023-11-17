@@ -181,37 +181,40 @@ int main( void )
             );
         }
 
-        float prediction = ml_model.predict();
+        struct mlResult prediction = ml_model.predict();
+        printf("\ta\t(prediction = %f)\t", prediction.mlResults[0]);
+        printf("\tb\t(prediction = %f)\t", prediction.mlResults[1]);
+        printf("\tc\t(prediction = %f)\n", prediction.mlResults[2]);
 
-        if (prediction >= 0.9) {
-            
-            if (!detecting) {
-                //send value of notDetected and reset
-                uart_putc(UART_ID, '<');
-                uart_puts(UART_ID, std::to_string(notDetected).c_str());
-                uart_putc(UART_ID, '>');
-                printf("not detected %d \n\n", notDetected);
-                notDetected = 0;
-                detecting = true;
-            } 
-            detected++;
+        //if (prediction >= 0.9) {
+        //    
+        //    if (!detecting) {
+        //        //send value of notDetected and reset
+        //        uart_putc(UART_ID, '<');
+        //        uart_puts(UART_ID, std::to_string(notDetected).c_str());
+        //        uart_putc(UART_ID, '>');
+        //        printf("not detected %d \n\n", notDetected);
+        //        notDetected = 0;
+        //        detecting = true;
+        //    } 
+        //    detected++;
 
-          //printf("\t🔥 🔔\tdetected!\t(prediction = %f)\n\n", prediction);
-        } else {
+        //  //printf("\t🔥 🔔\tdetected!\t(prediction = %f)\n\n", prediction);
+        //} else {
 
-            if (detecting) {
-                //send value of detected and reset
-                uart_putc(UART_ID, '<');
-                uart_puts(UART_ID, std::to_string(detected).c_str());
-                uart_putc(UART_ID, '>');
-                printf("detected %d \n\n", detected);
-                detected = 0;
-                detecting = false;
-            }
-            notDetected++;
+        //    if (detecting) {
+        //        //send value of detected and reset
+        //        uart_putc(UART_ID, '<');
+        //        uart_puts(UART_ID, std::to_string(detected).c_str());
+        //        uart_putc(UART_ID, '>');
+        //        printf("detected %d \n\n", detected);
+        //        detected = 0;
+        //        detecting = false;
+        //    }
+        //    notDetected++;
 
-          //printf("\t🔕\tNOT detected\t(prediction = %f)\n\n", prediction);
-        }
+        //  //printf("\t🔕\tNOT detected\t(prediction = %f)\n\n", prediction);
+        //}
 		//printf("TEST\n");
         /*if (detected == 6) {
             uart_putc(UART_ID, '<');
