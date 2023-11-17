@@ -182,14 +182,51 @@ int main( void )
         }
 
         struct MLModel::mlResult prediction = ml_model.predict();
-        printf("\ta \t%f", prediction.mlResults[0]);
-        printf("\tb \t%f", prediction.mlResults[1]);
-        printf("\tc \t%f)\n", prediction.mlResults[2]);
-        printf("\td \t%f", prediction.mlResults[3]);
-        printf("\te \t%f", prediction.mlResults[4]);
-        printf("\tf \t%f)\n", prediction.mlResults[5]);
-        printf("\tg \t%f", prediction.mlResults[7]);
-        printf("\th \t%f)\n\n", prediction.mlResults[7]);
+
+        float lvalue = 0.0f;
+        int largest = 0;
+
+        if (prediction.mlResults[0] > lvalue) {
+            largest = 0;
+            lvalue = prediction.mlResults[0];
+        }
+        if (prediction.mlResults[1] > lvalue) {
+            largest = 1;
+            lvalue = prediction.mlResults[1];
+        }
+        if (prediction.mlResults[2] > lvalue) {
+            largest = 2;
+            lvalue = prediction.mlResults[2];
+        }
+        if (prediction.mlResults[3] > lvalue) {
+            largest = 3;
+            lvalue = prediction.mlResults[3];
+        }
+        if (prediction.mlResults[4] > lvalue) {
+            largest = 4;
+            lvalue = prediction.mlResults[4];
+        }
+        if (prediction.mlResults[5] > lvalue) {
+            largest = 5;
+            lvalue = prediction.mlResults[5];
+        }
+        if (prediction.mlResults[6] > lvalue) {
+            largest = 6;
+            lvalue = prediction.mlResults[6];
+        }
+        if (prediction.mlResults[7] > lvalue) {
+            largest = 7;
+            lvalue = prediction.mlResults[7];
+        }
+        printf("\tTOP: \t%d", largest);
+        printf("\tVAL: \t%f\n\n", lvalue);
+        //printf("\tb \t%f", prediction.mlResults[1]);
+        //printf("\tc \t%f)\n", prediction.mlResults[2]);
+        //printf("\td \t%f", prediction.mlResults[3]);
+        //printf("\te \t%f", prediction.mlResults[4]);
+        //printf("\tf \t%f)\n", prediction.mlResults[5]);
+        //printf("\tg \t%f", prediction.mlResults[7]);
+        //printf("\th \t%f)\n\n", prediction.mlResults[7]);
 
         //if (prediction >= 0.9) {
         //    
