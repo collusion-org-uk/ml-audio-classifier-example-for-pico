@@ -86,7 +86,7 @@ void* MLModel::input_data()
     return _input_tensor->data.data;
 }
 
-struct mlResult MLModel::predict()
+struct MLModel::mlResult MLModel::predict()
 {
     TfLiteStatus invoke_status = _interpreter->Invoke();
     Struct mlResult r;
