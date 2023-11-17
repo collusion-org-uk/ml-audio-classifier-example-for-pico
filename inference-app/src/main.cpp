@@ -218,8 +218,10 @@ int main( void )
             largest = 7;
             lvalue = prediction.mlResults[7];
         }
-        printf("\tTOP: \t%d", largest);
-        printf("\tVAL: \t%f\n\n", lvalue);
+        if (lvalue > 0.86f) {
+            printf("\tTOP: \t%d", largest);
+            printf("\tVAL: \t%f\n\n", lvalue);
+        }
         //printf("\tb \t%f", prediction.mlResults[1]);
         //printf("\tc \t%f)\n", prediction.mlResults[2]);
         //printf("\td \t%f", prediction.mlResults[3]);
