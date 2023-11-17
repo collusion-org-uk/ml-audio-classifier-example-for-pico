@@ -92,7 +92,10 @@ struct MLModel::mlResult MLModel::predict()
     struct MLModel::mlResult r;
 
     if (invoke_status != kTfLiteOk) {
-        return NAN;
+        r.mlResults[0] = -1.0f;
+        r.mlResults[1] = -1.0f;
+        r.mlResults[2] = -1.0f;
+        return r;
     }
 
     float a_quantized = _output_tensor->data.int8[0];
