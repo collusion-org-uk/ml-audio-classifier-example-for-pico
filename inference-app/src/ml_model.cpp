@@ -104,10 +104,26 @@ struct MLModel::mlResult MLModel::predict()
     float b = (b_quantized - _output_tensor->params.zero_point) * _output_tensor->params.scale;
     float c_quantized = _output_tensor->data.int8[2];
     float c = (c_quantized - _output_tensor->params.zero_point) * _output_tensor->params.scale;
+    float d_quantized = _output_tensor->data.int8[3];
+    float d = (d_quantized - _output_tensor->params.zero_point) * _output_tensor->params.scale;
+    float e_quantized = _output_tensor->data.int8[4];
+    float e = (e_quantized - _output_tensor->params.zero_point) * _output_tensor->params.scale;
+    float f_quantized = _output_tensor->data.int8[5];
+    float f = (f_quantized - _output_tensor->params.zero_point) * _output_tensor->params.scale;
+    float g_quantized = _output_tensor->data.int8[6];
+    float g = (g_quantized - _output_tensor->params.zero_point) * _output_tensor->params.scale;
+    float h_quantized = _output_tensor->data.int8[7];
+    float h = (h_quantized - _output_tensor->params.zero_point) * _output_tensor->params.scale;
 
     r.mlResults[0] = a;
     r.mlResults[1] = b;
     r.mlResults[2] = c;
+    r.mlResults[3] = d;
+    r.mlResults[4] = e;
+    r.mlResults[5] = f;
+    r.mlResults[6] = g;
+    r.mlResults[7] = h;
+
 
    // return y;
     return r;

@@ -16,7 +16,7 @@ class MLModel {
     public:
 
         struct mlResult {
-            float mlResults [3];
+            float mlResults [8];
         };
 
         MLModel(const unsigned char tflite_model[], int tensor_arena_size);
