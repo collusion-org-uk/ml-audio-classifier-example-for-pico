@@ -221,7 +221,7 @@ int main( void )
             uart_putc(UART_ID, '0');
             uart_putc(UART_ID, '>');
         }*/
-        pwm_set_chan_level(pwm_slice_num, pwm_chan_num, prediction * 255);
+        //pwm_set_chan_level(pwm_slice_num, pwm_chan_num, prediction * 255);
     }
 
     return 0;
