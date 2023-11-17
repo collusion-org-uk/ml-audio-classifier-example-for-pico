@@ -182,9 +182,9 @@ int main( void )
         }
 
         struct MLModel::mlResult prediction = ml_model.predict();
-        printf("\ta\t(prediction = %f)\t", prediction.mlResults[0]);
-        printf("\tb\t(prediction = %f)\t", prediction.mlResults[1]);
-        printf("\tc\t(prediction = %f)\n", prediction.mlResults[2]);
+        printf("\ta \t%f", prediction.mlResults[0]);
+        printf("\tb \t%f", prediction.mlResults[1]);
+        printf("\tc \t%f)\n", prediction.mlResults[2]);
 
         //if (prediction >= 0.9) {
         //    
