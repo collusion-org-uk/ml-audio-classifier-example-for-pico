@@ -210,15 +210,15 @@ int main( void )
             largest = 5;
             lvalue = prediction.mlResults[5];
         }
-        if (prediction.mlResults[6]- 0.015625f > lvalue) {
+        if (prediction.mlResults[6]- 0.585938f > lvalue) {
             largest = 6;
-            lvalue = prediction.mlResults[6];
+            lvalue = prediction.mlResults[6] - 0.585938f;
         }
         if (prediction.mlResults[7] - 0.015625f > lvalue) {
             largest = 7;
             lvalue = prediction.mlResults[7] - 0.015625f;
         }
-        if (lvalue > 0.86f) {
+        if (lvalue > 0.6f) {
             printf("\tTOP: \t%d", largest);
             printf("\tVAL: \t%f\n\n", lvalue);
         }
