@@ -219,16 +219,17 @@ int main( void )
             lvalue = prediction.mlResults[7];
         }
         if (lvalue > 0.86f) {
-            printf("\tTOP: \t%d", largest);
-            printf("\tVAL: \t%f\n\n", lvalue);
+            //printf("\tTOP: \t%d", largest);
+            //printf("\tVAL: \t%f\n\n", lvalue);
         }
-        //printf("\tb \t%f", prediction.mlResults[1]);
-        //printf("\tc \t%f)\n", prediction.mlResults[2]);
-        //printf("\td \t%f", prediction.mlResults[3]);
-        //printf("\te \t%f", prediction.mlResults[4]);
-        //printf("\tf \t%f)\n", prediction.mlResults[5]);
-        //printf("\tg \t%f", prediction.mlResults[7]);
-        //printf("\th \t%f)\n\n", prediction.mlResults[7]);
+        printf("\tb \t%f", prediction.mlResults[0]);
+        printf("\tb \t%f", prediction.mlResults[1]);
+        printf("\tc \t%f)\n", prediction.mlResults[2]);
+        printf("\td \t%f", prediction.mlResults[3]);
+        printf("\te \t%f", prediction.mlResults[4]);
+        printf("\tf \t%f)\n", prediction.mlResults[5]);
+        printf("\tg \t%f", prediction.mlResults[7]);
+        printf("\th \t%f)\n\n", prediction.mlResults[7]);
 
         //if (prediction >= 0.9) {
         //    
