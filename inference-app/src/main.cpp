@@ -229,8 +229,8 @@ int main( void )
         printf("\te \t%f", prediction.mlResults[4]);
         printf("\tf \t%f)\n", prediction.mlResults[5]);
         printf("\tg \t%f", prediction.mlResults[6]);
-        printf("\th \t%f)\n\n\n", prediction.mlResults[7]);
-
+        printf("\th \t%f)", prediction.mlResults[7]);
+        printf("\ti \t%f)\n\n\n", prediction.mlResults[8]);
         //if (prediction >= 0.9) {
         //    
         //    if (!detecting) {

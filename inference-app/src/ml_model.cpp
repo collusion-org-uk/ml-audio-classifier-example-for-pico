@@ -114,6 +114,8 @@ struct MLModel::mlResult MLModel::predict()
     float g = (g_quantized - _output_tensor->params.zero_point) * _output_tensor->params.scale;
     float h_quantized = _output_tensor->data.int8[7];
     float h = (h_quantized - _output_tensor->params.zero_point) * _output_tensor->params.scale;
+    float i_quantized = _output_tensor->data.int8[8];
+    float i = (h_quantized - _output_tensor->params.zero_point) * _output_tensor->params.scale;
 
     r.mlResults[0] = a;
     r.mlResults[1] = b;
@@ -123,6 +125,7 @@ struct MLModel::mlResult MLModel::predict()
     r.mlResults[5] = f;
     r.mlResults[6] = g;
     r.mlResults[7] = h;
+    r.mlResults[7] = i;
 
 
    // return y;
