@@ -265,6 +265,7 @@ int main( void )
         }
         //printf("%c-", aP);
         aP = to_string((int)(round(prediction.mlResults[0] * 10)));
+        aP = string(2 - aP.length(), '0') + aP;
         resultKey = "" + aP + "-";
 
 
@@ -282,6 +283,7 @@ int main( void )
         }
         //printf("%c-", bP);
         bP = to_string((int)(round(prediction.mlResults[1] * 10)));
+        bP = string(2 - bP.length(), '0') + bP;
         resultKey = resultKey + bP + "-";
 
         string cP = "0";
@@ -298,6 +300,7 @@ int main( void )
         }
         //printf("%c-", cP);
         cP = to_string((int)(round(prediction.mlResults[2] * 10)));
+        cP = string(2 - cP.length(), '0') + cP;
         resultKey = resultKey + cP + "-";
 
         string dP = "0";
@@ -314,6 +317,7 @@ int main( void )
         }
         //printf("%c-", dP);
         dP = to_string((int)(round(prediction.mlResults[3] * 10)));
+        dP = string(2 - dP.length(), '0') + dP;
         resultKey = resultKey + dP + "-";
 
         string eP = "0";
@@ -330,6 +334,7 @@ int main( void )
         }
         //printf("%c-", eP);
         eP = to_string((int)(round(prediction.mlResults[4] * 10)));
+        eP = string(2 - eP.length(), '0') + eP;
         resultKey = resultKey + eP + "-";
 
         string fP = "0";
@@ -346,6 +351,7 @@ int main( void )
         }
         //printf("%c-", fP);
         fP = to_string((int)(round(prediction.mlResults[5] * 10)));
+        fP = string(2 - fP.length(), '0') + fP;
         resultKey = resultKey + fP + "-";
 
         string gP = "0";
@@ -362,6 +368,7 @@ int main( void )
         }
         //printf("%c-", gP);
         gP = to_string((int)(round(prediction.mlResults[6] * 10)));
+        gP = string(2 - gP.length(), '0') + gP;
         resultKey = resultKey + gP + "-";
 
         string hP = "0";
@@ -378,6 +385,7 @@ int main( void )
         }
         //printf("%c-", hP);
         hP = to_string((int)(round(prediction.mlResults[7] * 10)));
+        hP = string(2 - hP.length(), '0') + hP;
         resultKey = resultKey + hP + "-";
 
         string iP = "0";
@@ -394,6 +402,7 @@ int main( void )
         }
         //printf("%c\t", iP);
         iP = to_string((int)(round(prediction.mlResults[8] * 10)));
+        iP = string(2 - iP.length(), '0') + iP;
         resultKey = resultKey + iP;
         
         //if (iP == "0") {
