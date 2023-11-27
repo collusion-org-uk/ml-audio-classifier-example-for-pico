@@ -230,8 +230,8 @@ int main( void )
 
 
 
-        float aThresholdL = 0.01f;
-        float aThresholdH = 0.9f;
+        float aThresholdL = 0.1f;
+        float aThresholdH = 0.7f;
         float bThresholdL = 0.01f;
         float bThresholdH = 0.9f;
         float cThresholdL = 0.01f;
