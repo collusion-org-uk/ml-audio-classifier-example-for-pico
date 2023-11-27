@@ -231,23 +231,23 @@ int main( void )
 
 
         float aThresholdL = 0.1f;
-        float aThresholdH = 0.7f;
-        float bThresholdL = 0.01f;
-        float bThresholdH = 0.9f;
-        float cThresholdL = 0.01f;
-        float cThresholdH = 0.9f;
-        float dThresholdL = 0.01f;
-        float dThresholdH = 0.9f;
-        float eThresholdL = 0.01f;
-        float eThresholdH = 0.9f;
-        float fThresholdL = 0.01f;
-        float fThresholdH = 0.9f;
-        float gThresholdL = 0.01f;
-        float gThresholdH = 0.9f;
-        float hThresholdL = 0.01f;
-        float hThresholdH = 0.9f;
-        float iThresholdL = 0.5f;
-        float iThresholdH = 0.9f;
+        float aThresholdH = 0.8f;
+        float bThresholdL = 0.1f;
+        float bThresholdH = 0.8f;
+        float cThresholdL = 0.1f;
+        float cThresholdH = 0.8f;
+        float dThresholdL = 0.1f;
+        float dThresholdH = 0.8f;
+        float eThresholdL = 0.1f;
+        float eThresholdH = 0.8f;
+        float fThresholdL = 0.1f;
+        float fThresholdH = 0.8f;
+        float gThresholdL = 0.1f;
+        float gThresholdH = 0.8f;
+        float hThresholdL = 0.1f;
+        float hThresholdH = 0.8f;
+        float iThresholdL = 0.1f;
+        float iThresholdH = 0.8f;
 
         string resultKey = "";
 
