@@ -411,22 +411,22 @@ int main( void )
             resultKeyLess1 = resultKey;
 
             string last3ResultKeys = resultKeyLess3 + "-" + resultKeyLess2 + "-" + resultKeyLess1;
-            printf("%s\n", last3ResultKeys.c_str());
+        //    printf("%s\n", last3ResultKeys.c_str());
 
             if (last3ResultKeys == "A-0-0-0-0-0-0-0-0-A-0-0-0-0-0-0-0-0-A-0-0-0-0-0-0-0-0") {
                 printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 1);
             }
         //}
 
-        //printf("\ta \t%f", prediction.mlResults[0]);
-        //printf("\tb \t%f", prediction.mlResults[1]);
-        //printf("\tc \t%f)", prediction.mlResults[2]);
-        //printf("\td \t%f", prediction.mlResults[3]);
-        //printf("\te \t%f", prediction.mlResults[4]);
-        //printf("\tf \t%f)", prediction.mlResults[5]);
-        //printf("\tg \t%f", prediction.mlResults[6]);
-        //printf("\th \t%f)", prediction.mlResults[7]);
-        //printf("\ti \t%f)\n\n\n", prediction.mlResults[8]);
+        printf("\ta \t%f", prediction.mlResults[0]);
+        printf("\tb \t%f", prediction.mlResults[1]);
+        printf("\tc \t%f)\n", prediction.mlResults[2]);
+        printf("\td \t%f", prediction.mlResults[3]);
+        printf("\te \t%f", prediction.mlResults[4]);
+        printf("\tf \t%f)\n", prediction.mlResults[5]);
+        printf("\tg \t%f", prediction.mlResults[6]);
+        printf("\th \t%f)", prediction.mlResults[7]);
+        printf("\ti \t%f)\n\n\n", prediction.mlResults[8]);
         
         
         //if (prediction >= 0.9) {
