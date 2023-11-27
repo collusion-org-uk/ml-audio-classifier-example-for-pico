@@ -264,7 +264,7 @@ int main( void )
             }
         }
         //printf("%c-", aP);
-        aP = to_string(round(prediction.mlResults[0] * 100));
+        aP = to_string((int)(round(prediction.mlResults[0] * 10)));
         resultKey = "" + aP + "-";
 
 
@@ -281,7 +281,7 @@ int main( void )
             }
         }
         //printf("%c-", bP);
-        bP = to_string(round(prediction.mlResults[1] * 100));
+        bP = to_string((int)(round(prediction.mlResults[1] * 10)));
         resultKey = resultKey + bP + "-";
 
         string cP = "0";
@@ -297,7 +297,7 @@ int main( void )
             }
         }
         //printf("%c-", cP);
-        cP = to_string(round(prediction.mlResults[2] * 100));
+        cP = to_string((int)(round(prediction.mlResults[2] * 10)));
         resultKey = resultKey + cP + "-";
 
         string dP = "0";
@@ -313,7 +313,7 @@ int main( void )
             }
         }
         //printf("%c-", dP);
-        dP = to_string(round(prediction.mlResults[3] * 100));
+        dP = to_string((int)(round(prediction.mlResults[3] * 10)));
         resultKey = resultKey + dP + "-";
 
         string eP = "0";
@@ -329,7 +329,7 @@ int main( void )
             }
         }
         //printf("%c-", eP);
-        eP = to_string(round(prediction.mlResults[4] * 100));
+        eP = to_string((int)(round(prediction.mlResults[4] * 10)));
         resultKey = resultKey + eP + "-";
 
         string fP = "0";
@@ -345,7 +345,7 @@ int main( void )
             }
         }
         //printf("%c-", fP);
-        fP = to_string(round(prediction.mlResults[5] * 100));
+        fP = to_string((int)(round(prediction.mlResults[5] * 10)));
         resultKey = resultKey + fP + "-";
 
         string gP = "0";
@@ -361,7 +361,7 @@ int main( void )
             }
         }
         //printf("%c-", gP);
-        gP = to_string(round(prediction.mlResults[6] * 100));
+        gP = to_string((int)(round(prediction.mlResults[6] * 10)));
         resultKey = resultKey + gP + "-";
 
         string hP = "0";
@@ -377,7 +377,7 @@ int main( void )
             }
         }
         //printf("%c-", hP);
-        hP = to_string(round(prediction.mlResults[7] * 100));
+        hP = to_string((int)(round(prediction.mlResults[7] * 10)));
         resultKey = resultKey + hP + "-";
 
         string iP = "0";
@@ -393,7 +393,7 @@ int main( void )
             }
         }
         //printf("%c\t", iP);
-        iP = to_string(round(prediction.mlResults[8] * 100));
+        iP = to_string((int)(round(prediction.mlResults[8] * 10)));
         resultKey = resultKey + iP;
         
         //if (iP == "0") {
