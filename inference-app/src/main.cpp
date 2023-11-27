@@ -245,7 +245,7 @@ int main( void )
         float iThresholdL = 0.01f;
         float iThresholdH = 0.9f;
 
-        string resultKey = ""
+        string resultKey = "";
 
         char aP = '0';
         if (prediction.mlResults[0] < aThresholdL) {
