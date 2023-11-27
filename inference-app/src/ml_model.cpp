@@ -95,6 +95,12 @@ struct MLModel::mlResult MLModel::predict()
         r.mlResults[0] = -1.0f;
         r.mlResults[1] = -1.0f;
         r.mlResults[2] = -1.0f;
+        r.mlResults[3] = -1.0f;
+        r.mlResults[4] = -1.0f;
+        r.mlResults[5] = -1.0f;
+        r.mlResults[6] = -1.0f;
+        r.mlResults[7] = -1.0f;
+        r.mlResults[8] = -1.0f;
         return r;
     }
 
