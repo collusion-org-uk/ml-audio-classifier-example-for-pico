@@ -245,6 +245,8 @@ int main( void )
         float iThresholdL = 0.01f;
         float iThresholdH = 0.9f;
 
+        string resultKey = ""
+
         char aP = '0';
         if (prediction.mlResults[0] < aThresholdL) {
             aP = '0';
@@ -257,7 +259,9 @@ int main( void )
                 aP = 'a';
             }
         }
-        printf("%c-", aP);
+        //printf("%c-", aP);
+        resultKey = "" + aP + "-";
+
 
         char bP = '0';
         if (prediction.mlResults[1] < bThresholdL) {
@@ -271,7 +275,9 @@ int main( void )
                 bP = 'b';
             }
         }
-        printf("%c-", bP);
+        //printf("%c-", bP);
+
+        resultKey = resultKey + bP + "-";
 
         char cP = '0';
         if (prediction.mlResults[2] < cThresholdL) {
@@ -285,7 +291,8 @@ int main( void )
                 cP = 'c';
             }
         }
-        printf("%c-", cP);
+        //printf("%c-", cP);
+        resultKey = resultKey + cP + "-";
 
         char dP = '0';
         if (prediction.mlResults[3] < dThresholdL) {
@@ -299,7 +306,8 @@ int main( void )
                 dP = 'd';
             }
         }
-        printf("%c-", dP);
+        //printf("%c-", dP);
+        resultKey = resultKey + dP + "-";
 
         char eP = '0';
         if (prediction.mlResults[4] < eThresholdL) {
@@ -313,7 +321,8 @@ int main( void )
                 eP = 'e';
             }
         }
-        printf("%c-", eP);
+        //printf("%c-", eP);
+        resultKey = resultKey + eP + "-";
 
         char fP = '0';
         if (prediction.mlResults[5] < fThresholdL) {
@@ -327,7 +336,8 @@ int main( void )
                 fP = 'f';
             }
         }
-        printf("%c-", fP);
+        //printf("%c-", fP);
+        resultKey = resultKey + fP + "-";
 
         char gP = '0';
         if (prediction.mlResults[6] < gThresholdL) {
@@ -341,7 +351,8 @@ int main( void )
                 gP = 'g';
             }
         }
-        printf("%c-", gP);
+        //printf("%c-", gP);
+        resultKey = resultKey + gP + "-";
 
         char hP = '0';
         if (prediction.mlResults[7] < hThresholdL) {
@@ -355,7 +366,8 @@ int main( void )
                 hP = 'h';
             }
         }
-        printf("%c-", hP);
+        //printf("%c-", hP);
+        resultKey = resultKey + hP + "-";
 
         char iP = '0';
         if (prediction.mlResults[8] < iThresholdL) {
@@ -369,17 +381,20 @@ int main( void )
                 iP = 'i';
             }
         }
-        printf("%c\t", iP);
-
-        printf("\ta \t%f", prediction.mlResults[0]);
-        printf("\tb \t%f", prediction.mlResults[1]);
-        printf("\tc \t%f)", prediction.mlResults[2]);
-        printf("\td \t%f", prediction.mlResults[3]);
-        printf("\te \t%f", prediction.mlResults[4]);
-        printf("\tf \t%f)", prediction.mlResults[5]);
-        printf("\tg \t%f", prediction.mlResults[6]);
-        printf("\th \t%f)", prediction.mlResults[7]);
-        printf("\ti \t%f)\n\n\n", prediction.mlResults[8]);
+        //printf("%c\t", iP);
+        resultKey = resultKey + iP;
+        printf("%s\n", resultKey);
+        //printf("\ta \t%f", prediction.mlResults[0]);
+        //printf("\tb \t%f", prediction.mlResults[1]);
+        //printf("\tc \t%f)", prediction.mlResults[2]);
+        //printf("\td \t%f", prediction.mlResults[3]);
+        //printf("\te \t%f", prediction.mlResults[4]);
+        //printf("\tf \t%f)", prediction.mlResults[5]);
+        //printf("\tg \t%f", prediction.mlResults[6]);
+        //printf("\th \t%f)", prediction.mlResults[7]);
+        //printf("\ti \t%f)\n\n\n", prediction.mlResults[8]);
+        
+        
         //if (prediction >= 0.9) {
         //    
         //    if (!detecting) {
