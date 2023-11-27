@@ -247,138 +247,138 @@ int main( void )
 
         string resultKey = "";
 
-        char aP = '0';
+        string aP = "0";
         if (prediction.mlResults[0] < aThresholdL) {
-            aP = '0';
+            aP = "0";
         }
         else {
             if (prediction.mlResults[0] > aThresholdH) {
-                aP = 'A';
+                aP = "A";
             }
             else {
-                aP = 'a';
+                aP = "a";
             }
         }
         //printf("%c-", aP);
         resultKey = "" + aP + "-";
 
 
-        char bP = '0';
+        string bP = "0";
         if (prediction.mlResults[1] < bThresholdL) {
-            bP = '0';
+            bP = "0";
         }
         else {
             if (prediction.mlResults[1] > bThresholdH) {
-                bP = 'B';
+                bP = "B";
             }
             else {
-                bP = 'b';
+                bP = "b";
             }
         }
         //printf("%c-", bP);
 
         resultKey = resultKey + bP + "-";
 
-        char cP = '0';
+        string cP = "0";
         if (prediction.mlResults[2] < cThresholdL) {
-            cP = '0';
+            cP = "0";
         }
         else {
             if (prediction.mlResults[2] > cThresholdH) {
-                cP = 'C';
+                cP = "C";
             }
             else {
-                cP = 'c';
+                cP = "c";
             }
         }
         //printf("%c-", cP);
         resultKey = resultKey + cP + "-";
 
-        char dP = '0';
+        string dP = "0";
         if (prediction.mlResults[3] < dThresholdL) {
-            dP = '0';
+            dP = "0";
         }
         else {
             if (prediction.mlResults[3] > dThresholdH) {
-                dP = 'D';
+                dP = "D";
             }
             else {
-                dP = 'd';
+                dP = "d";
             }
         }
         //printf("%c-", dP);
         resultKey = resultKey + dP + "-";
 
-        char eP = '0';
+        string eP = "0";
         if (prediction.mlResults[4] < eThresholdL) {
-            eP = '0';
+            eP = "0";
         }
         else {
             if (prediction.mlResults[4] > eThresholdH) {
-                eP = 'E';
+                eP = "E";
             }
             else {
-                eP = 'e';
+                eP = "e";
             }
         }
         //printf("%c-", eP);
         resultKey = resultKey + eP + "-";
 
-        char fP = '0';
+        string fP = "0";
         if (prediction.mlResults[5] < fThresholdL) {
-            fP = '0';
+            fP = "0";
         }
         else {
             if (prediction.mlResults[5] > fThresholdH) {
-                fP = 'F';
+                fP = "F";
             }
             else {
-                fP = 'f';
+                fP = "f";
             }
         }
         //printf("%c-", fP);
         resultKey = resultKey + fP + "-";
 
-        char gP = '0';
+        string gP = "0";
         if (prediction.mlResults[6] < gThresholdL) {
-            gP = '0';
+            gP = "0";
         }
         else {
             if (prediction.mlResults[6] > gThresholdH) {
-                gP = 'G';
+                gP = "G";
             }
             else {
-                gP = 'g';
+                gP = "g";
             }
         }
         //printf("%c-", gP);
         resultKey = resultKey + gP + "-";
 
-        char hP = '0';
+        string hP = "0";
         if (prediction.mlResults[7] < hThresholdL) {
-            hP = '0';
+            hP = "0";
         }
         else {
             if (prediction.mlResults[7] > hThresholdH) {
-                hP = 'H';
+                hP = "H";
             }
             else {
-                hP = 'h';
+                hP = "h";
             }
         }
         //printf("%c-", hP);
         resultKey = resultKey + hP + "-";
 
-        char iP = '0';
+        string iP = "0";
         if (prediction.mlResults[8] < iThresholdL) {
-            iP = '0';
+            iP = "0";
         }
         else {
             if (prediction.mlResults[8] > iThresholdH) {
-                iP = 'I';
+                iP = "I";
             }
             else {
-                iP = 'i';
+                iP = "i";
             }
         }
         //printf("%c\t", iP);
