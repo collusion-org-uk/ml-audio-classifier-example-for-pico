@@ -231,6 +231,42 @@ int main( void )
         printf("\tg \t%f", prediction.mlResults[6]);
         printf("\th \t%f)", prediction.mlResults[7]);
         printf("\ti \t%f)\n\n\n", prediction.mlResults[8]);
+
+
+
+        float aThresholdL = 0.01f;
+        float aThresholdH = 0.9f;
+        float bThresholdL = 0.01f;
+        float bThresholdH = 0.9f;
+        float cThresholdL = 0.01f;
+        float cThresholdH = 0.9f;
+        float dThresholdL = 0.01f;
+        float dThresholdH = 0.9f;
+        float eThresholdL = 0.01f;
+        float eThresholdH = 0.9f;
+        float fThresholdL = 0.01f;
+        float fThresholdH = 0.9f;
+        float gThresholdL = 0.01f;
+        float gThresholdH = 0.9f;
+        float hThresholdL = 0.01f;
+        float hThresholdH = 0.9f;
+        float iThresholdL = 0.01f;
+        float iThresholdH = 0.9f;
+
+        char aP = '0';
+        if (prediction.mlResults[0] < aThresholdL) {
+            aP = '0';
+        }
+        else {
+            if (prediction.mlResults[0] > aThresholdH) {
+                aP = 'A';
+            }
+            else {
+                aP = 'a';
+            }
+        }
+        printf("%c\n", aP);
+
         //if (prediction >= 0.9) {
         //    
         //    if (!detecting) {
