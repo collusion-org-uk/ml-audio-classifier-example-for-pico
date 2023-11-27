@@ -65,6 +65,10 @@ const struct pdm_microphone_config pdm_config = {
     .sample_buffer_size = INPUT_BUFFER_SIZE,
 };
 
+string resultKeyLess1 = "";
+string resultKeyLess2 = "";
+string resultKeyLess3 = "";
+
 q15_t capture_buffer_q15[INPUT_BUFFER_SIZE];
 volatile int new_samples_captured = 0;
 
@@ -383,7 +387,16 @@ int main( void )
         }
         //printf("%c\t", iP);
         resultKey = resultKey + iP;
-        printf("%s\n", resultKey.c_str());
+        
+
+        resultKeyLess3 = resultKeyLess2;
+        resultKeyLess2 = resultKeyLess1;
+        resultKeyLess1 = resultKey;
+
+        string last3ResultKeys = resultKeyLess3 + "-" + resultKeyLess2 + "-" + resultKeyLess1;
+        printf("%s\n", last3ResultKeys.c_str());
+
+
         //printf("\ta \t%f", prediction.mlResults[0]);
         //printf("\tb \t%f", prediction.mlResults[1]);
         //printf("\tc \t%f)", prediction.mlResults[2]);
