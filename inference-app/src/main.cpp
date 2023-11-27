@@ -383,7 +383,7 @@ int main( void )
         }
         //printf("%c\t", iP);
         resultKey = resultKey + iP;
-        printf("%s\n", resultKey);
+        printf("%s\n", resultKey.c_str());
         //printf("\ta \t%f", prediction.mlResults[0]);
         //printf("\tb \t%f", prediction.mlResults[1]);
         //printf("\tc \t%f)", prediction.mlResults[2]);
