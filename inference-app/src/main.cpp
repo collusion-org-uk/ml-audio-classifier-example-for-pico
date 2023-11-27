@@ -396,7 +396,7 @@ int main( void )
         iP = to_string(round(prediction.mlResults[8] * 100));
         resultKey = resultKey + iP;
         
-        if (iP == "0") {
+        //if (iP == "0") {
             resultKeyLess3 = resultKeyLess2;
             resultKeyLess2 = resultKeyLess1;
             resultKeyLess1 = resultKey;
@@ -407,7 +407,7 @@ int main( void )
             if (last3ResultKeys == "A-0-0-0-0-0-0-0-0-A-0-0-0-0-0-0-0-0-A-0-0-0-0-0-0-0-0") {
                 printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 1);
             }
-        }
+        //}
 
         //printf("\ta \t%f", prediction.mlResults[0]);
         //printf("\tb \t%f", prediction.mlResults[1]);
