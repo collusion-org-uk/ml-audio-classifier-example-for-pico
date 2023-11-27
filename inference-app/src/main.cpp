@@ -396,6 +396,9 @@ int main( void )
         string last3ResultKeys = resultKeyLess3 + "-" + resultKeyLess2 + "-" + resultKeyLess1;
         printf("%s\n", last3ResultKeys.c_str());
 
+        if (last3ResultKeys == "a-0-0-0-0-0-0-h-i-A-0-0-0-0-0-0-h-0-0-0-0-0-0-0-0-0-I") {
+            printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n",1);
+        }
 
         //printf("\ta \t%f", prediction.mlResults[0]);
         //printf("\tb \t%f", prediction.mlResults[1]);
