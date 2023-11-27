@@ -388,16 +388,17 @@ int main( void )
         //printf("%c\t", iP);
         resultKey = resultKey + iP;
         
+        if (iP == "0") {
+            resultKeyLess3 = resultKeyLess2;
+            resultKeyLess2 = resultKeyLess1;
+            resultKeyLess1 = resultKey;
 
-        resultKeyLess3 = resultKeyLess2;
-        resultKeyLess2 = resultKeyLess1;
-        resultKeyLess1 = resultKey;
+            string last3ResultKeys = resultKeyLess3 + "-" + resultKeyLess2 + "-" + resultKeyLess1;
+            printf("%s\n", last3ResultKeys.c_str());
 
-        string last3ResultKeys = resultKeyLess3 + "-" + resultKeyLess2 + "-" + resultKeyLess1;
-        printf("%s\n", last3ResultKeys.c_str());
-
-        if (last3ResultKeys == "A-0-0-0-0-0-0-0-0-A-0-0-0-0-0-0-0-0-A-0-0-0-0-0-0-0-0") {
-            printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n",1);
+            if (last3ResultKeys == "A-0-0-0-0-0-0-0-0-A-0-0-0-0-0-0-0-0-A-0-0-0-0-0-0-0-0") {
+                printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 1);
+            }
         }
 
         //printf("\ta \t%f", prediction.mlResults[0]);
