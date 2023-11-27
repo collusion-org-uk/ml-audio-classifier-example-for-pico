@@ -246,7 +246,7 @@ int main( void )
         float gThresholdH = 0.9f;
         float hThresholdL = 0.01f;
         float hThresholdH = 0.9f;
-        float iThresholdL = 0.01f;
+        float iThresholdL = 0.5f;
         float iThresholdH = 0.9f;
 
         string resultKey = "";
@@ -396,7 +396,7 @@ int main( void )
         string last3ResultKeys = resultKeyLess3 + "-" + resultKeyLess2 + "-" + resultKeyLess1;
         printf("%s\n", last3ResultKeys.c_str());
 
-        if (last3ResultKeys == "a-0-0-0-0-0-0-h-i-A-0-0-0-0-0-0-h-0-0-0-0-0-0-0-0-0-I") {
+        if (last3ResultKeys == "A-0-0-0-0-0-0-0-0-A-0-0-0-0-0-0-0-0-A-0-0-0-0-0-0-0-0") {
             printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n",1);
         }
 
