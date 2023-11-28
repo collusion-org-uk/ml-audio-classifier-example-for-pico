@@ -636,7 +636,7 @@ int main( void )
         //        printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 1);
         //    }
         //}
-/*
+
         printf("\ta \t%f", prediction.mlResults[0]);
         printf("\tb \t%f", prediction.mlResults[1]);
         printf("\tc \t%f\n", prediction.mlResults[2]);
@@ -646,7 +646,7 @@ int main( void )
         printf("\tg \t%f", prediction.mlResults[6]);
         printf("\th \t%f", prediction.mlResults[7]);
         printf("\ti \t%f\n\n\n", prediction.mlResults[8]);
- */       
+        
         
         //if (prediction >= 0.9) {
         //    
