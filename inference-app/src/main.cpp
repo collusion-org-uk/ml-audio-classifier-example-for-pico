@@ -322,14 +322,14 @@ int main( void )
 
 
         // if we detect zero background noise then start counting
-        if (!counting && prediction.mlResults[8] == 0.0f) {
+        if (!counting && prediction.mlResults[8] < 0.001f) {
             counting = true;
         } 
 
         // if we are counting increment the number of times each category detected over SAMPLE_WINDOW
         if (counting) {
             aP = "0";
-            if (prediction.mlResults[0] == 0.0f) {
+            if (prediction.mlResults[0] < 0.001f) {
                 aP = "0";
                 aZero += 1;
             }
@@ -358,7 +358,7 @@ int main( void )
 
 
             bP = "0";
-            if (prediction.mlResults[1] == 0.0f) {
+            if (prediction.mlResults[1] < 0.001f) {
                 bP = "0";
                 bZero += 1;
             }
@@ -384,7 +384,7 @@ int main( void )
             resultKey = resultKey + bP + "-";
 
             cP = "0";
-            if (prediction.mlResults[2] == 0.0f) {
+            if (prediction.mlResults[2] < 0.001f) {
                 cP = "0";
                 cZero += 1;
             }
@@ -410,7 +410,7 @@ int main( void )
             resultKey = resultKey + cP + "-";
 
             dP = "0";
-            if (prediction.mlResults[3] == 0.0f) {
+            if (prediction.mlResults[3] < 0.001f) {
                 dP = "0";
                 dZero += 1;
             }
@@ -436,7 +436,7 @@ int main( void )
             resultKey = resultKey + dP + "-";
 
             eP = "0";
-            if (prediction.mlResults[4] == 0.0f) {
+            if (prediction.mlResults[4] < 0.001f) {
                 eP = "0";
                 eZero += 1;
             }
@@ -462,7 +462,7 @@ int main( void )
             resultKey = resultKey + eP + "-";
 
             fP = "0";
-            if (prediction.mlResults[5] == 0.0f) {
+            if (prediction.mlResults[5] < 0.001f) {
                 fP = "0";
                 fZero += 1;
             }
@@ -488,7 +488,7 @@ int main( void )
             resultKey = resultKey + fP + "-";
 
             gP = "0";
-            if (prediction.mlResults[6] == 0.0f) {
+            if (prediction.mlResults[6] < 0.001f) {
                 gP = "0";
                 gZero += 1;
             }
@@ -514,7 +514,7 @@ int main( void )
             resultKey = resultKey + gP + "-";
 
             hP = "0";
-            if (prediction.mlResults[7] == 0.0f) {
+            if (prediction.mlResults[7] < 0.001f) {
                 hP = "0";
                 hZero += 1;
             }
@@ -540,7 +540,7 @@ int main( void )
             resultKey = resultKey + hP + "-";
 
             iP = "0";
-            if (prediction.mlResults[8] == 0.0f) {
+            if (prediction.mlResults[8] < 0.001f) {
                 iP = "0";
                 iZero += 1;
             }
