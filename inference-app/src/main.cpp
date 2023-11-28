@@ -69,6 +69,75 @@ string resultKeyLess1 = "";
 string resultKeyLess2 = "";
 string resultKeyLess3 = "";
 
+//a variable to start counting when i value of zero first detected
+bool counting = false;
+
+// number of readings to count
+int SAMPLE_WINDOW = 12;
+
+// a variable to keep track of how many readings we have processed
+int sampleCount = 0;
+
+//some variables to count the number of times a category is detected at all over a time period
+int aPresent = 0;
+int bPresent = 0;
+int cPresent = 0;
+int dPresent = 0;
+int ePresent = 0;
+int fPresent = 0;
+int gPresent = 0;
+int hPresent = 0;
+int iPresent = 0;
+
+//some variables to count the number of times a category is strongly detected over a time period
+int aHigh = 0;
+int bHigh = 0;
+int cHigh = 0;
+int dHigh = 0;
+int eHigh = 0;
+int fHigh = 0;
+int gHigh = 0;
+int hHigh = 0;
+int iHigh = 0;
+
+//some variables to count the number of times a category is weakly detected over a time period
+int aLow = 0;
+int bLow = 0;
+int cLow = 0;
+int dLow = 0;
+int eLow = 0;
+int fLow = 0;
+int gLow = 0;
+int hLow = 0;
+int iLow = 0;
+
+//some variables to count the number of times a category is zero over a time period
+int aZero = 0;
+int bZero = 0;
+int cZero = 0;
+int dZero = 0;
+int eZero = 0;
+int fZero = 0;
+int gZero = 0;
+int hZero = 0;
+int iZero = 0;
+
+//some variables to count the number of times a combination of categories is trueover a time period
+int key1Present = 0;
+int key2Present = 0;
+int key3Present = 0;
+int key4Present = 0;
+
+string aP = "";
+string bP = "";
+string cP = "";
+string dP = "";
+string eP = "";
+string fP = "";
+string gP = "";
+string hP = "";
+string iP = "";
+
 q15_t capture_buffer_q15[INPUT_BUFFER_SIZE];
 volatile int new_samples_captured = 0;
 
@@ -251,183 +320,333 @@ int main( void )
 
         string resultKey = "";
 
-        string aP = "0";
-        if (prediction.mlResults[0] < aThresholdL) {
+
+        // if we detect zero background noise then start counting
+        if (!counting && prediction.mlResults[8] == 0.0f) {
+            counting = true;
+        } 
+
+        // if we are counting increment the number of times each category detected over SAMPLE_WINDOW
+        if (counting) {
             aP = "0";
-        }
-        else {
-            if (prediction.mlResults[0] > aThresholdH) {
-                aP = "A";
+            if (prediction.mlResults[0] == 0.0f) {
+                aP = "0";
+                aZero += 1;
+            }
+            if (prediction.mlResults[0] > 0.0f) {
+                aPresent += 1;
+            }
+            if (prediction.mlResults[0] < aThresholdL) {
+                aP = "0";
+                aLow += 1;
+
             }
             else {
-                aP = "a";
+                if (prediction.mlResults[0] > aThresholdH) {
+                    aP = "A";
+                    aHigh += 1;
+                }
+                else {
+                    aP = "a";
+                }
             }
-        }
-        //printf("%c-", aP);
-        aP = to_string((int)(round(prediction.mlResults[0] * 10)));
-        aP = string(2 - aP.length(), '0') + aP;
-        resultKey = "" + aP + "-";
+
+            //printf("%c-", aP);
+            aP = to_string((int)(round(prediction.mlResults[0] * 10)));
+            aP = string(2 - aP.length(), '0') + aP;
+            resultKey = "" + aP + "-";
 
 
-        string bP = "0";
-        if (prediction.mlResults[1] < bThresholdL) {
             bP = "0";
-        }
-        else {
-            if (prediction.mlResults[1] > bThresholdH) {
-                bP = "B";
+            if (prediction.mlResults[1] == 0.0f) {
+                bP = "0";
+                bZero += 1;
+            }
+            if (prediction.mlResults[1] > 0.0f) {
+                bPresent += 1;
+            }
+            if (prediction.mlResults[1] < bThresholdL) {
+                bP = "0";
+                bLow += 1;
             }
             else {
-                bP = "b";
+                if (prediction.mlResults[1] > bThresholdH) {
+                    bP = "B";
+                    bHigh += 1;
+                }
+                else {
+                    bP = "b";
+                }
             }
-        }
-        //printf("%c-", bP);
-        bP = to_string((int)(round(prediction.mlResults[1] * 10)));
-        bP = string(2 - bP.length(), '0') + bP;
-        resultKey = resultKey + bP + "-";
+            //printf("%c-", bP);
+            bP = to_string((int)(round(prediction.mlResults[1] * 10)));
+            bP = string(2 - bP.length(), '0') + bP;
+            resultKey = resultKey + bP + "-";
 
-        string cP = "0";
-        if (prediction.mlResults[2] < cThresholdL) {
             cP = "0";
-        }
-        else {
-            if (prediction.mlResults[2] > cThresholdH) {
-                cP = "C";
+            if (prediction.mlResults[2] == 0.0f) {
+                cP = "0";
+                cZero += 1;
+            }
+            if (prediction.mlResults[2] > 0.0f) {
+                cPresent += 1;
+            }
+            if (prediction.mlResults[2] < cThresholdL) {
+                cP = "0";
+                cLow += 1;
             }
             else {
-                cP = "c";
+                if (prediction.mlResults[2] > cThresholdH) {
+                    cP = "C";
+                    cHigh += 1;
+                }
+                else {
+                    cP = "c";
+                }
             }
-        }
-        //printf("%c-", cP);
-        cP = to_string((int)(round(prediction.mlResults[2] * 10)));
-        cP = string(2 - cP.length(), '0') + cP;
-        resultKey = resultKey + cP + "-";
+            //printf("%c-", cP);
+            cP = to_string((int)(round(prediction.mlResults[2] * 10)));
+            cP = string(2 - cP.length(), '0') + cP;
+            resultKey = resultKey + cP + "-";
 
-        string dP = "0";
-        if (prediction.mlResults[3] < dThresholdL) {
             dP = "0";
-        }
-        else {
-            if (prediction.mlResults[3] > dThresholdH) {
-                dP = "D";
+            if (prediction.mlResults[3] == 0.0f) {
+                dP = "0";
+                dZero += 1;
+            }
+            if (prediction.mlResults[3] > 0.0f) {
+                dPresent += 1;
+            }
+            if (prediction.mlResults[3] < dThresholdL) {
+                dP = "0";
+                dLow += 1;
             }
             else {
-                dP = "d";
+                if (prediction.mlResults[3] > dThresholdH) {
+                    dP = "D";
+                    dHigh += 1;
+                }
+                else {
+                    dP = "d";
+                }
             }
-        }
-        //printf("%c-", dP);
-        dP = to_string((int)(round(prediction.mlResults[3] * 10)));
-        dP = string(2 - dP.length(), '0') + dP;
-        resultKey = resultKey + dP + "-";
+            //printf("%c-", dP);
+            dP = to_string((int)(round(prediction.mlResults[3] * 10)));
+            dP = string(2 - dP.length(), '0') + dP;
+            resultKey = resultKey + dP + "-";
 
-        string eP = "0";
-        if (prediction.mlResults[4] < eThresholdL) {
             eP = "0";
-        }
-        else {
-            if (prediction.mlResults[4] > eThresholdH) {
-                eP = "E";
+            if (prediction.mlResults[4] == 0.0f) {
+                eP = "0";
+                eZero += 1;
+            }
+            if (prediction.mlResults[4] > 0.0f) {
+                ePresent += 1;
+            }
+            if (prediction.mlResults[4] < eThresholdL) {
+                eP = "0";
+                eLow += 1;
             }
             else {
-                eP = "e";
+                if (prediction.mlResults[4] > eThresholdH) {
+                    eP = "E";
+                    eHigh += 1;
+                }
+                else {
+                    eP = "e";
+                }
             }
-        }
-        //printf("%c-", eP);
-        eP = to_string((int)(round(prediction.mlResults[4] * 10)));
-        eP = string(2 - eP.length(), '0') + eP;
-        resultKey = resultKey + eP + "-";
+            //printf("%c-", eP);
+            eP = to_string((int)(round(prediction.mlResults[4] * 10)));
+            eP = string(2 - eP.length(), '0') + eP;
+            resultKey = resultKey + eP + "-";
 
-        string fP = "0";
-        if (prediction.mlResults[5] < fThresholdL) {
             fP = "0";
-        }
-        else {
-            if (prediction.mlResults[5] > fThresholdH) {
-                fP = "F";
+            if (prediction.mlResults[5] == 0.0f) {
+                fP = "0";
+                fZero += 1;
+            }
+            if (prediction.mlResults[5] > 0.0f) {
+                fPresent += 1;
+            }
+            if (prediction.mlResults[5] < fThresholdL) {
+                fP = "0";
+                fLow += 1;
             }
             else {
-                fP = "f";
+                if (prediction.mlResults[5] > fThresholdH) {
+                    fP = "F";
+                    fHigh += 1;
+                }
+                else {
+                    fP = "f";
+                }
             }
-        }
-        //printf("%c-", fP);
-        fP = to_string((int)(round(prediction.mlResults[5] * 10)));
-        fP = string(2 - fP.length(), '0') + fP;
-        resultKey = resultKey + fP + "-";
+            //printf("%c-", fP);
+            fP = to_string((int)(round(prediction.mlResults[5] * 10)));
+            fP = string(2 - fP.length(), '0') + fP;
+            resultKey = resultKey + fP + "-";
 
-        string gP = "0";
-        if (prediction.mlResults[6] < gThresholdL) {
             gP = "0";
-        }
-        else {
-            if (prediction.mlResults[6] > gThresholdH) {
-                gP = "G";
+            if (prediction.mlResults[6] == 0.0f) {
+                gP = "0";
+                gZero += 1;
+            }
+            if (prediction.mlResults[6] > 0.0f) {
+                gPresent += 1;
+            }
+            if (prediction.mlResults[6] < gThresholdL) {
+                gP = "0";
+                gLow += 1;
             }
             else {
-                gP = "g";
+                if (prediction.mlResults[6] > gThresholdH) {
+                    gP = "G";
+                    gHigh += 1;
+                }
+                else {
+                    gP = "g";
+                }
             }
-        }
-        //printf("%c-", gP);
-        gP = to_string((int)(round(prediction.mlResults[6] * 10)));
-        gP = string(2 - gP.length(), '0') + gP;
-        resultKey = resultKey + gP + "-";
+            //printf("%c-", gP);
+            gP = to_string((int)(round(prediction.mlResults[6] * 10)));
+            gP = string(2 - gP.length(), '0') + gP;
+            resultKey = resultKey + gP + "-";
 
-        string hP = "0";
-        if (prediction.mlResults[7] < hThresholdL) {
             hP = "0";
-        }
-        else {
-            if (prediction.mlResults[7] > hThresholdH) {
-                hP = "H";
+            if (prediction.mlResults[7] == 0.0f) {
+                hP = "0";
+                hZero += 1;
+            }
+            if (prediction.mlResults[7] > 0.0f) {
+                hPresent += 1;
+            }
+            if (prediction.mlResults[7] < hThresholdL) {
+                hP = "0";
+                hLow += 1;
             }
             else {
-                hP = "h";
+                if (prediction.mlResults[7] > hThresholdH) {
+                    hP = "H";
+                    hHigh += 1;
+                }
+                else {
+                    hP = "h";
+                }
             }
-        }
-        //printf("%c-", hP);
-        hP = to_string((int)(round(prediction.mlResults[7] * 10)));
-        hP = string(2 - hP.length(), '0') + hP;
-        resultKey = resultKey + hP + "-";
+            //printf("%c-", hP);
+            hP = to_string((int)(round(prediction.mlResults[7] * 10)));
+            hP = string(2 - hP.length(), '0') + hP;
+            resultKey = resultKey + hP + "-";
 
-        string iP = "0";
-        if (prediction.mlResults[8] < iThresholdL) {
             iP = "0";
-        }
-        else {
-            if (prediction.mlResults[8] > iThresholdH) {
-                iP = "I";
+            if (prediction.mlResults[8] == 0.0f) {
+                iP = "0";
+                iZero += 1;
+            }
+            if (prediction.mlResults[8] > 0.0f) {
+                iPresent += 1;
+            }
+            if (prediction.mlResults[8] < iThresholdL) {
+                iP = "0";
+                iLow += 1;
             }
             else {
-                iP = "i";
+                if (prediction.mlResults[8] > iThresholdH) {
+                    iP = "I";
+                    iHigh += 1;
+                }
+                else {
+                    iP = "i";
+                }
             }
+
+            //printf("%c\t", iP);
+            iP = to_string((int)(round(prediction.mlResults[8] * 10)));
+            iP = string(2 - iP.length(), '0') + iP;
+            resultKey = resultKey + iP;
+
+            sampleCount++;
+            if (sampleCount > SAMPLE_WINDOW) {
+
+                // output counts
+                printf("%d\t", aPresent);
+                printf("%d\t", bPresent);
+                printf("%d\t", cPresent);
+                printf("%d\t", dPresent);
+                printf("%d\t", ePresent);
+                printf("%d\t", fPresent);
+                printf("%d\t", gPresent);
+                printf("%d\t", hPresent);
+                printf("%d\n\n", iPresent);
+
+
+                //reset variables
+                counting = false;
+                sampleCount = 0;
+                aZero = 0;
+                aPresent = 0;
+                aLow = 0;
+                aHigh = 0;
+                bZero = 0;
+                bPresent = 0;
+                bLow = 0;
+                bHigh = 0;
+                cZero = 0;
+                cPresent = 0;
+                cLow = 0;
+                cHigh = 0;
+                dZero = 0;
+                dPresent = 0;
+                dLow = 0;
+                dHigh = 0;
+                eZero = 0;
+                ePresent = 0;
+                eLow = 0;
+                eHigh = 0;
+                fZero = 0;
+                fPresent = 0;
+                fLow = 0;
+                fHigh = 0;
+                gZero = 0;
+                gPresent = 0;
+                gLow = 0;
+                gHigh = 0;
+                hZero = 0;
+                hPresent = 0;
+                hLow = 0;
+                hHigh = 0;
+                iZero = 0;
+                iPresent = 0;
+                iLow = 0;
+                iHigh = 0;
+            }
+
         }
-        //printf("%c\t", iP);
-        iP = to_string((int)(round(prediction.mlResults[8] * 10)));
-        iP = string(2 - iP.length(), '0') + iP;
-        resultKey = resultKey + iP;
         
         //if (iP == "0") {
-            resultKeyLess3 = resultKeyLess2;
-            resultKeyLess2 = resultKeyLess1;
-            resultKeyLess1 = resultKey;
+        //    resultKeyLess3 = resultKeyLess2;
+        //    resultKeyLess2 = resultKeyLess1;
+        //    resultKeyLess1 = resultKey;
 
-            string last3ResultKeys = resultKeyLess3 + "-" + resultKeyLess2 + "-" + resultKeyLess1;
+        //    string last3ResultKeys = resultKeyLess3 + "-" + resultKeyLess2 + "-" + resultKeyLess1;
         //    printf("%s\n", last3ResultKeys.c_str());
 
-            if (last3ResultKeys == "A-0-0-0-0-0-0-0-0-A-0-0-0-0-0-0-0-0-A-0-0-0-0-0-0-0-0") {
-                printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 1);
-            }
+        //    if (last3ResultKeys == "A-0-0-0-0-0-0-0-0-A-0-0-0-0-0-0-0-0-A-0-0-0-0-0-0-0-0") {
+        //        printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 1);
+        //    }
         //}
-
+/*
         printf("\ta \t%f", prediction.mlResults[0]);
         printf("\tb \t%f", prediction.mlResults[1]);
-        printf("\tc \t%f)\n", prediction.mlResults[2]);
+        printf("\tc \t%f\n", prediction.mlResults[2]);
         printf("\td \t%f", prediction.mlResults[3]);
         printf("\te \t%f", prediction.mlResults[4]);
-        printf("\tf \t%f)\n", prediction.mlResults[5]);
+        printf("\tf \t%f\n", prediction.mlResults[5]);
         printf("\tg \t%f", prediction.mlResults[6]);
-        printf("\th \t%f)", prediction.mlResults[7]);
-        printf("\ti \t%f)\n\n\n", prediction.mlResults[8]);
-        
+        printf("\th \t%f", prediction.mlResults[7]);
+        printf("\ti \t%f\n\n\n", prediction.mlResults[8]);
+*/        
         
         //if (prediction >= 0.9) {
         //    
