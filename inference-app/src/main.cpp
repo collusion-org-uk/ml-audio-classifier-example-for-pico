@@ -73,7 +73,7 @@ string resultKeyLess3 = "";
 bool counting = false;
 
 // number of readings to count
-int SAMPLE_WINDOW = 12;
+int SAMPLE_WINDOW = 16;
 
 // a variable to keep track of how many readings we have processed
 int sampleCount = 0;
@@ -333,7 +333,7 @@ int main( void )
                 aP = "0";
                 aZero += 1;
             }
-            if (prediction.mlResults[0] > 0.0f) {
+            if (prediction.mlResults[0] > 0.001f) {
                 aPresent += 1;
             }
             if (prediction.mlResults[0] < aThresholdL) {
@@ -362,7 +362,7 @@ int main( void )
                 bP = "0";
                 bZero += 1;
             }
-            if (prediction.mlResults[1] > 0.0f) {
+            if (prediction.mlResults[1] > 0.001f) {
                 bPresent += 1;
             }
             if (prediction.mlResults[1] < bThresholdL) {
@@ -388,7 +388,7 @@ int main( void )
                 cP = "0";
                 cZero += 1;
             }
-            if (prediction.mlResults[2] > 0.0f) {
+            if (prediction.mlResults[2] > 0.001f) {
                 cPresent += 1;
             }
             if (prediction.mlResults[2] < cThresholdL) {
@@ -414,7 +414,7 @@ int main( void )
                 dP = "0";
                 dZero += 1;
             }
-            if (prediction.mlResults[3] > 0.0f) {
+            if (prediction.mlResults[3] > 0.001f) {
                 dPresent += 1;
             }
             if (prediction.mlResults[3] < dThresholdL) {
@@ -440,7 +440,7 @@ int main( void )
                 eP = "0";
                 eZero += 1;
             }
-            if (prediction.mlResults[4] > 0.0f) {
+            if (prediction.mlResults[4] > 0.001f) {
                 ePresent += 1;
             }
             if (prediction.mlResults[4] < eThresholdL) {
@@ -466,7 +466,7 @@ int main( void )
                 fP = "0";
                 fZero += 1;
             }
-            if (prediction.mlResults[5] > 0.0f) {
+            if (prediction.mlResults[5] > 0.001f) {
                 fPresent += 1;
             }
             if (prediction.mlResults[5] < fThresholdL) {
@@ -492,7 +492,7 @@ int main( void )
                 gP = "0";
                 gZero += 1;
             }
-            if (prediction.mlResults[6] > 0.0f) {
+            if (prediction.mlResults[6] > 0.001f) {
                 gPresent += 1;
             }
             if (prediction.mlResults[6] < gThresholdL) {
@@ -518,7 +518,7 @@ int main( void )
                 hP = "0";
                 hZero += 1;
             }
-            if (prediction.mlResults[7] > 0.0f) {
+            if (prediction.mlResults[7] > 0.001f) {
                 hPresent += 1;
             }
             if (prediction.mlResults[7] < hThresholdL) {
@@ -544,7 +544,7 @@ int main( void )
                 iP = "0";
                 iZero += 1;
             }
-            if (prediction.mlResults[8] > 0.0f) {
+            if (prediction.mlResults[8] > 0.001f) {
                 iPresent += 1;
             }
             if (prediction.mlResults[8] < iThresholdL) {
