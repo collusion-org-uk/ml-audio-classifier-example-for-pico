@@ -138,6 +138,17 @@ string gP = "";
 string hP = "";
 string iP = "";
 
+
+struct MLModel::mlResult r8;
+struct MLModel::mlResult r7;
+struct MLModel::mlResult r6;
+struct MLModel::mlResult r5;
+struct MLModel::mlResult r4;
+struct MLModel::mlResult r3;
+struct MLModel::mlResult r2;
+struct MLModel::mlResult r1;
+
+
 q15_t capture_buffer_q15[INPUT_BUFFER_SIZE];
 volatile int new_samples_captured = 0;
 
@@ -194,6 +205,19 @@ int main( void )
     scaled_spectrum = (int8_t*)ml_model.input_data();
     spectogram_divider = 64 * ml_model.input_scale(); 
     spectrogram_zero_point = ml_model.input_zero_point();
+
+    //initialise store of the last 8 readings
+    for (int i = 0; i < 9; i++) {
+        r1.mlResults[i] = 0.0f;
+        r2.mlResults[i] = 0.0f;
+        r3.mlResults[i] = 0.0f;
+        r4.mlResults[i] = 0.0f;
+        r5.mlResults[i] = 0.0f;
+        r6.mlResults[i] = 0.0f;
+        r7.mlResults[i] = 0.0f;
+        r8.mlResults[i] = 0.0f;
+    }
+
 
 
 	//// initialize and start the analog microphone
@@ -255,6 +279,70 @@ int main( void )
         }
 
         struct MLModel::mlResult prediction = ml_model.predict();
+
+
+
+        for (int i = 0; i < 9; i++) {
+            r8.mlResults[i] = r7.mlResults[i];
+            r7.mlResults[i] = r6.mlResults[i];
+            r6.mlResults[i] = r5.mlResults[i];
+            r5.mlResults[i] = r4.mlResults[i];
+            r4.mlResults[i] = r3.mlResults[i];
+            r3.mlResults[i] = r2.mlResults[i];
+            r2.mlResults[i] = r1.mlResults[i];
+            r1.mlResults[i] = prediction.mlResults[i];
+        }
+
+// probably wakesound 2
+        if (r1.mlResults[0] > 0.9f &&
+            r2.mlResults[0] > 0.9f &&
+            r3.mlResults[0] > 0.9f &&
+            r4.mlResults[0] > 0.9f &&
+            r5.mlResults[0] > 0.9f &&
+            r6.mlResults[0] > 0.9f &&
+            r7.mlResults[0] > 0.9f &&
+            r8.mlResults[0] > 0.9f) {
+
+            printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 2);
+
+        }
+
+        if (r1.mlResults[0] < 0.01f &&
+            r1.mlResults[1] < 0.01f &&
+            r1.mlResults[2] > 0.08f &&
+            r1.mlResults[8] < 0.01f) {
+            printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 3);
+        }
+
+        if (r1.mlResults[0] < 0.01f &&
+            r1.mlResults[1] < 0.01f &&
+            r2.mlResults[2] < 0.01f &&
+            r1.mlResults[3] > 0.6f &&
+            r1.mlResults[4] < 0.01f &&
+            r1.mlResults[5] < 0.01f &&
+            r1.mlResults[6] < 0.01f &&
+            r1.mlResults[7] < 0.01f &&
+            r1.mlResults[8] < 0.01f     
+            ) {
+            printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 4);
+        }
+
+
+        if (r1.mlResults[4] > 0.8f &&
+            r2.mlResults[4] > 0.8f &&
+            r3.mlResults[4] > 0.8f &&
+            r4.mlResults[4] > 0.8f &&
+            r5.mlResults[4] > 0.8f &&
+            r6.mlResults[4] > 0.8f) {
+
+            printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 5);
+
+        }
+
+        if (r8.mlResults[7] > 0.01f) {
+            printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 8);
+        }
+
 
         float lvalue = 0.0f;
         int largest = 0;
