@@ -637,7 +637,7 @@ int main( void )
         //    }
         //}
 
-        printf("\ta \t%f", prediction.mlResults[0]);
+ /*     printf("\ta \t%f", prediction.mlResults[0]);
         printf("\tb \t%f", prediction.mlResults[1]);
         printf("\tc \t%f\n", prediction.mlResults[2]);
         printf("\td \t%f", prediction.mlResults[3]);
@@ -646,8 +646,15 @@ int main( void )
         printf("\tg \t%f", prediction.mlResults[6]);
         printf("\th \t%f", prediction.mlResults[7]);
         printf("\ti \t%f\n\n\n", prediction.mlResults[8]);
-        
-        
+  */      
+        printf("%f\t", prediction.mlResults[0]);
+        printf("%f\t", prediction.mlResults[1]);
+        printf("%f\t", prediction.mlResults[2]);
+        printf("%f\t", prediction.mlResults[3]);
+        printf("%f\t", prediction.mlResults[4]);
+        printf("%f\t", prediction.mlResults[5]);
+        printf("%f\t", prediction.mlResults[6]);
+        printf("%f\n", prediction.mlResults[7]);
         //if (prediction >= 0.9) {
         //    
         //    if (!detecting) {
