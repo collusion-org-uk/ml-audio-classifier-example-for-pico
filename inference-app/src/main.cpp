@@ -307,16 +307,17 @@ int main( void )
 
         }
 
-        if (r1.mlResults[0] < 0.01f &&
+        if (r1.mlResults[0] > 0.1f &&
+            r1.mlResults[0] < 0.5f &&
             r1.mlResults[1] < 0.01f &&
-            r1.mlResults[2] > 0.08f &&
+            r1.mlResults[2] > 0.45f &&
             r1.mlResults[8] < 0.01f) {
             printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 3);
         }
 
         if (r1.mlResults[0] < 0.01f &&
             r1.mlResults[1] < 0.01f &&
-            r2.mlResults[2] < 0.01f &&
+            r1.mlResults[2] < 0.01f &&
             r1.mlResults[3] > 0.6f &&
             r1.mlResults[4] < 0.01f &&
             r1.mlResults[5] < 0.01f &&
@@ -339,7 +340,7 @@ int main( void )
 
         }
 
-        if (r8.mlResults[7] > 0.01f) {
+        if (r1.mlResults[7] > 0.01f) {
             printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 8);
         }
 
