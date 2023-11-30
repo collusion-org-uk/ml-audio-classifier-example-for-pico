@@ -647,14 +647,15 @@ int main( void )
         printf("\th \t%f", prediction.mlResults[7]);
         printf("\ti \t%f\n\n\n", prediction.mlResults[8]);
   */      
-        printf("%f\t", prediction.mlResults[0]);
-        printf("%f\t", prediction.mlResults[1]);
-        printf("%f\t", prediction.mlResults[2]);
-        printf("%f\t", prediction.mlResults[3]);
-        printf("%f\t", prediction.mlResults[4]);
-        printf("%f\t", prediction.mlResults[5]);
-        printf("%f\t", prediction.mlResults[6]);
-        printf("%f\n", prediction.mlResults[7]);
+        printf("%f,", prediction.mlResults[0]);
+        printf("%f,", prediction.mlResults[1]);
+        printf("%f,", prediction.mlResults[2]);
+        printf("%f,", prediction.mlResults[3]);
+        printf("%f,", prediction.mlResults[4]);
+        printf("%f,", prediction.mlResults[5]);
+        printf("%f,", prediction.mlResults[6]);
+        printf("%f,", prediction.mlResults[7]);
+        printf("%f\n", prediction.mlResults[8]);
         //if (prediction >= 0.9) {
         //    
         //    if (!detecting) {
