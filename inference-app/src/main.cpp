@@ -374,7 +374,7 @@ int main( void )
             r2.mlResults[5] > 0.01f &&
             r2.mlResults[6] > 0.01f &&
             r2.mlResults[7] > 0.01f &&
-            r1.mlResults[8] > 0.01f
+            r1.mlResults[8] > 0.01f &&
             r1.mlResults[0] > 0.01f &&
             r1.mlResults[1] > 0.01f &&
             r1.mlResults[2] > 0.01f &&
@@ -383,11 +383,10 @@ int main( void )
             r1.mlResults[5] > 0.01f &&
             r1.mlResults[6] > 0.01f &&
             r1.mlResults[7] > 0.01f &&
-            r1.mlResults[8] > 0.01f
-    ) {
-    printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 4);
-    wake4Present++;
-}
+            r1.mlResults[8] > 0.01f) {
+            printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 4);
+            wake4Present++;
+        }
 
         if (r1.mlResults[4] > 0.8f &&
             r2.mlResults[4] > 0.8f &&
