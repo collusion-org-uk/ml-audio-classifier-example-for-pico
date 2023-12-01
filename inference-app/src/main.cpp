@@ -324,7 +324,7 @@ int main( void )
             r8.mlResults[8] < 0.1f) {
 
 
-            printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 1);
+            //printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 1);
             wake1Present++;
         }
 
@@ -338,7 +338,7 @@ int main( void )
             r7.mlResults[0] > 0.9f &&
             r8.mlResults[0] > 0.9f) {
 
-            printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 2);
+            //printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 2);
             wake2Present++;
 
         }
@@ -348,7 +348,7 @@ int main( void )
             r1.mlResults[1] < 0.01f &&
             r1.mlResults[2] > 0.45f &&
             r1.mlResults[8] < 0.01f) {
-            printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 3);
+            //printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 3);
             wake3Present++;
         }
 
@@ -366,16 +366,7 @@ int main( void )
             wake4Present++;
         }
 */
-        if (r2.mlResults[0] > 0.01f &&
-            r2.mlResults[1] > 0.01f &&
-            r2.mlResults[2] > 0.01f &&
-            r2.mlResults[3] > 0.6f &&
-            r2.mlResults[4] > 0.01f &&
-            r2.mlResults[5] > 0.01f &&
-            r2.mlResults[6] > 0.01f &&
-            r2.mlResults[7] > 0.01f &&
-            r1.mlResults[8] > 0.01f &&
-            r1.mlResults[0] > 0.01f &&
+        if (r1.mlResults[0] > 0.01f &&
             r1.mlResults[1] > 0.01f &&
             r1.mlResults[2] > 0.01f &&
             r1.mlResults[3] > 0.6f &&
@@ -384,7 +375,7 @@ int main( void )
             r1.mlResults[6] > 0.01f &&
             r1.mlResults[7] > 0.01f &&
             r1.mlResults[8] > 0.01f) {
-            printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 4);
+            //printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 4);
             wake4Present++;
         }
 
@@ -395,7 +386,7 @@ int main( void )
             r5.mlResults[4] > 0.8f &&
             r6.mlResults[4] > 0.8f) {
 
-            printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 5);
+            //printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 5);
             wake5Present++;
 
         }
@@ -405,16 +396,16 @@ int main( void )
             r3.mlResults[3] > 0.9f &&
             r4.mlResults[3] > 0.9f &&
             r5.mlResults[3] > 0.9f) {
-            printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 6);
+            //printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 6);
             wake6Present++;
         }
 
         if (false) {
-            printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 7);
+            //printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 7);
             wake7Present++;
         }
 
-        if (r1.mlResults[7] > 0.01f) {
+        if (r1.mlResults[7] > 0.9f) {
             printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 8);
             wake8Present++;
         }
@@ -490,7 +481,7 @@ int main( void )
                 wake8Present == 0
                 )
             {
-                //wake sound 4 is actually linkked to 5: Honesty
+                //wake sound 4 is actually linked to 5: Honesty
                 //uart_putc(UART_ID, '<');
                 //uart_puts(UART_ID, std::to_string(5).c_str());
                 //uart_putc(UART_ID, '>');
@@ -554,7 +545,7 @@ int main( void )
                 wake8Present > 0
                 )
             {
-                //wake sound 8 is actually linkked to 4: Collaboration
+                //wake sound 8 is actually linkked to 4: Determination
                 //uart_putc(UART_ID, '<');
                 //uart_puts(UART_ID, std::to_string(4).c_str());
                 //uart_putc(UART_ID, '>');
