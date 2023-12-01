@@ -123,10 +123,14 @@ int hZero = 0;
 int iZero = 0;
 
 //some variables to count the number of times a combination of categories is trueover a time period
-int key1Present = 0;
-int key2Present = 0;
-int key3Present = 0;
-int key4Present = 0;
+int wake1Present = 0;
+int wake2Present = 0;
+int wake3Present = 0;
+int wake4Present = 0;
+int wake5Present = 0;
+int wake6Present = 0;
+int wake7Present = 0;
+int wake8Present = 0;
 
 string aP = "";
 string bP = "";
@@ -278,6 +282,22 @@ int main( void )
             );
         }
 
+
+        if (!counting) {
+            //reset counter and begin counting
+            sampleCount = 0;
+            int wake1Present = 0;
+            int wake2Present = 0;
+            int wake3Present = 0;
+            int wake4Present = 0;
+            int wake5Present = 0;
+            int wake6Present = 0;
+            int wake7Present = 0;
+            int wake8Present = 0;
+            counting = true;
+        }
+
+
         struct MLModel::mlResult prediction = ml_model.predict();
 
 
@@ -293,6 +313,21 @@ int main( void )
             r1.mlResults[i] = prediction.mlResults[i];
         }
 
+        if (r1.mlResults[0] < 0.85f  &&
+            r2.mlResults[0] < 0.85f &&
+            r3.mlResults[0] > 0.5f &&
+            r4.mlResults[0] > 0.85f &&
+            r4.mlResults[8] < 0.1f &&
+            r5.mlResults[0] > 0.5f &&
+            r6.mlResults[0] < 0.1f &&
+            r7.mlResults[0] < 0.1f &&
+            r8.mlResults[8] < 0.1f &&) {
+
+              
+            printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 1);
+            wake1Present++;
+        }
+
 // probably wakesound 2
         if (r1.mlResults[0] > 0.9f &&
             r2.mlResults[0] > 0.9f &&
@@ -304,6 +339,7 @@ int main( void )
             r8.mlResults[0] > 0.9f) {
 
             printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 2);
+            wake2Present++;
 
         }
 
@@ -313,9 +349,10 @@ int main( void )
             r1.mlResults[2] > 0.45f &&
             r1.mlResults[8] < 0.01f) {
             printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 3);
+            wake3Present++;
         }
 
-        if (r1.mlResults[0] < 0.01f &&
+ /*       if (r1.mlResults[0] < 0.01f &&
             r1.mlResults[1] < 0.01f &&
             r1.mlResults[2] < 0.01f &&
             r1.mlResults[3] > 0.6f &&
@@ -326,8 +363,31 @@ int main( void )
             r1.mlResults[8] < 0.01f     
             ) {
             printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 4);
+            wake4Present++;
         }
-
+*//
+        if (r2.mlResults[0] > 0.01f &&
+            r2.mlResults[1] > 0.01f &&
+            r2.mlResults[2] > 0.01f &&
+            r2.mlResults[3] > 0.6f &&
+            r2.mlResults[4] > 0.01f &&
+            r2.mlResults[5] > 0.01f &&
+            r2.mlResults[6] > 0.01f &&
+            r2.mlResults[7] > 0.01f &&
+            r1.mlResults[8] > 0.01f
+            r1.mlResults[0] > 0.01f &&
+            r1.mlResults[1] > 0.01f &&
+            r1.mlResults[2] > 0.01f &&
+            r1.mlResults[3] > 0.6f &&
+            r1.mlResults[4] > 0.01f &&
+            r1.mlResults[5] > 0.01f &&
+            r1.mlResults[6] > 0.01f &&
+            r1.mlResults[7] > 0.01f &&
+            r1.mlResults[8] > 0.01f
+    ) {
+    printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 4);
+    wake4Present++;
+}
 
         if (r1.mlResults[4] > 0.8f &&
             r2.mlResults[4] > 0.8f &&
@@ -337,11 +397,173 @@ int main( void )
             r6.mlResults[4] > 0.8f) {
 
             printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 5);
+            wake5Present++;
 
+        }
+
+        if (r1.mlResults[3] > 0.9f &&
+            r2.mlResults[3] > 0.9f &&
+            r3.mlResults[3] > 0.9f &&
+            r4.mlResults[3] > 0.9f &&
+            r5.mlResults[3] > 0.9f) {
+            printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 6);
+            wake6Present++;
+        }
+
+        if (false) {
+            printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 7);
+            wake7Present++;
         }
 
         if (r1.mlResults[7] > 0.01f) {
             printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 8);
+            wake8Present++;
+        }
+
+
+        if (sampleCount) {
+            //report detected 
+            printf("\n===========================\nWAKE SOUND1:\t%d\n", wake1Present);
+            printf("WAKE SOUND2:\t%d\n", wake2Present);
+            printf("WAKE SOUND3:\t%d\n", wake3Present);
+            printf("WAKE SOUND4:\t%d\n", wake4Present);
+            printf("WAKE SOUND5:\t%d\n", wake5Present);
+            printf("WAKE SOUND6:\t%d\n", wake6Present);
+            printf("WAKE SOUND7:\t%d\n", wake7Present);
+            printf("WAKE SOUND8:\t%d\n===========================\n\n", wake8Present);
+
+            //resolve clashes
+
+
+            //send to nano
+            if (wake1Present > 0 &&
+                wake2Present == 0 &&
+                wake3Present == 0 &&
+                wake4Present == 0 &&
+                wake5Present == 0 &&
+                wake6Present == 0 &&
+                wake7Present == 0 &&
+                wake8Present == 0
+                ) 
+            {
+                uart_putc(UART_ID, '<');
+                uart_puts(UART_ID, std::to_string(1).c_str());
+                uart_putc(UART_ID, '>');
+            }
+
+            if (wake1Present == 0 &&
+                wake2Present > 0 &&
+                wake3Present == 0 &&
+                wake4Present == 0 &&
+                wake5Present == 0 &&
+                wake6Present == 0 &&
+                wake7Present == 0 &&
+                wake8Present == 0
+                )
+            {
+                uart_putc(UART_ID, '<');
+                uart_puts(UART_ID, std::to_string(2).c_str());
+                uart_putc(UART_ID, '>');
+            }
+
+            if (wake1Present == 0 &&
+                wake2Present == 0 &&
+                wake3Present > 0 &&
+                wake4Present == 0 &&
+                wake5Present == 0 &&
+                wake6Present == 0 &&
+                wake7Present == 0 &&
+                wake8Present == 0
+                )
+            {
+                uart_putc(UART_ID, '<');
+                uart_puts(UART_ID, std::to_string(3).c_str());
+                uart_putc(UART_ID, '>');
+            }
+
+            if (wake1Present == 0 &&
+                wake2Present == 0 &&
+                wake3Present == 0 &&
+                wake4Present > 0 &&
+                wake5Present == 0 &&
+                wake6Present == 0 &&
+                wake7Present == 0 &&
+                wake8Present == 0
+                )
+            {
+                //wake sound 4 is actually linkked to 5: Honesty
+                uart_putc(UART_ID, '<');
+                uart_puts(UART_ID, std::to_string(5).c_str());
+                uart_putc(UART_ID, '>');
+            }
+
+            if (wake1Present == 0 &&
+                wake2Present == 0 &&
+                wake3Present == 0 &&
+                wake4Present == 0 &&
+                wake5Present > 0 &&
+                wake6Present == 0 &&
+                wake7Present == 0 &&
+                wake8Present == 0
+                )
+            {
+                //wake sound 5 is actually linked to 10: Finale
+                uart_putc(UART_ID, '<');
+                uart_puts(UART_ID, std::to_string(10).c_str());
+                uart_putc(UART_ID, '>');
+            }
+
+            if (wake1Present == 0 &&
+                wake2Present == 0 &&
+                wake3Present == 0 &&
+                wake4Present == 0 &&
+                wake5Present == 0 &&
+                wake6Present > 0 &&
+                wake7Present == 0 &&
+                wake8Present == 0
+                )
+            {
+                //wake sound 6 is actually linked to 7: Kindness
+                uart_putc(UART_ID, '<');
+                uart_puts(UART_ID, std::to_string(7).c_str());
+                uart_putc(UART_ID, '>');
+            }
+
+            if (wake1Present == 0 &&
+                wake2Present == 0 &&
+                wake3Present == 0 &&
+                wake4Present == 0 &&
+                wake5Present == 0 &&
+                wake6Present == 0 &&
+                wake7Present > 0 &&
+                wake8Present == 0
+                )
+            {
+                //wake sound 7 is actually linked to 6: Integrity
+                uart_putc(UART_ID, '<');
+                uart_puts(UART_ID, std::to_string(6).c_str());
+                uart_putc(UART_ID, '>');
+            }
+
+            if (wake1Present == 0 &&
+                wake2Present == 0 &&
+                wake3Present == 0 &&
+                wake4Present == 0 &&
+                wake5Present == 0 &&
+                wake6Present == 0 &&
+                wake7Present == 0 &&
+                wake8Present > 0
+                )
+            {
+                //wake sound 8 is actually linkked to 4: Collaboration
+                uart_putc(UART_ID, '<');
+                uart_puts(UART_ID, std::to_string(4).c_str());
+                uart_putc(UART_ID, '>');
+            }
+
+
+            counting = false;
+
         }
 
 
@@ -414,7 +636,7 @@ int main( void )
         if (!counting && prediction.mlResults[8] < 0.001f) {
             counting = true;
         } 
-
+/*
         // if we are counting increment the number of times each category detected over SAMPLE_WINDOW
         if (counting) {
             aP = "0";
@@ -712,7 +934,7 @@ int main( void )
             }
 
         }
-        
+ */       
         //if (iP == "0") {
         //    resultKeyLess3 = resultKeyLess2;
         //    resultKeyLess2 = resultKeyLess1;
