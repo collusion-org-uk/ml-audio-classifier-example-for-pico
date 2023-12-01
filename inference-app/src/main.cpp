@@ -313,7 +313,7 @@ int main( void )
             r1.mlResults[i] = prediction.mlResults[i];
         }
 
-        if (r1.mlResults[0] < 0.85f  &&
+        if (r1.mlResults[0] < 0.85f &&
             r2.mlResults[0] < 0.85f &&
             r3.mlResults[0] > 0.5f &&
             r4.mlResults[0] > 0.85f &&
@@ -321,9 +321,9 @@ int main( void )
             r5.mlResults[0] > 0.5f &&
             r6.mlResults[0] < 0.1f &&
             r7.mlResults[0] < 0.1f &&
-            r8.mlResults[8] < 0.1f &&) {
+            r8.mlResults[8] < 0.1f) {
 
-              
+
             printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 1);
             wake1Present++;
         }
@@ -365,7 +365,7 @@ int main( void )
             printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 4);
             wake4Present++;
         }
-*//
+*/
         if (r2.mlResults[0] > 0.01f &&
             r2.mlResults[1] > 0.01f &&
             r2.mlResults[2] > 0.01f &&
@@ -446,9 +446,9 @@ int main( void )
                 wake8Present == 0
                 ) 
             {
-                uart_putc(UART_ID, '<');
-                uart_puts(UART_ID, std::to_string(1).c_str());
-                uart_putc(UART_ID, '>');
+                //uart_putc(UART_ID, '<');
+                //uart_puts(UART_ID, std::to_string(1).c_str());
+                //uart_putc(UART_ID, '>');
             }
 
             if (wake1Present == 0 &&
@@ -461,9 +461,9 @@ int main( void )
                 wake8Present == 0
                 )
             {
-                uart_putc(UART_ID, '<');
-                uart_puts(UART_ID, std::to_string(2).c_str());
-                uart_putc(UART_ID, '>');
+                //uart_putc(UART_ID, '<');
+                //uart_puts(UART_ID, std::to_string(2).c_str());
+                //uart_putc(UART_ID, '>');
             }
 
             if (wake1Present == 0 &&
@@ -476,9 +476,9 @@ int main( void )
                 wake8Present == 0
                 )
             {
-                uart_putc(UART_ID, '<');
-                uart_puts(UART_ID, std::to_string(3).c_str());
-                uart_putc(UART_ID, '>');
+                //uart_putc(UART_ID, '<');
+                //uart_puts(UART_ID, std::to_string(3).c_str());
+                //uart_putc(UART_ID, '>');
             }
 
             if (wake1Present == 0 &&
@@ -492,9 +492,9 @@ int main( void )
                 )
             {
                 //wake sound 4 is actually linkked to 5: Honesty
-                uart_putc(UART_ID, '<');
-                uart_puts(UART_ID, std::to_string(5).c_str());
-                uart_putc(UART_ID, '>');
+                //uart_putc(UART_ID, '<');
+                //uart_puts(UART_ID, std::to_string(5).c_str());
+                //uart_putc(UART_ID, '>');
             }
 
             if (wake1Present == 0 &&
@@ -508,9 +508,9 @@ int main( void )
                 )
             {
                 //wake sound 5 is actually linked to 10: Finale
-                uart_putc(UART_ID, '<');
-                uart_puts(UART_ID, std::to_string(10).c_str());
-                uart_putc(UART_ID, '>');
+                //uart_putc(UART_ID, '<');
+                //uart_puts(UART_ID, std::to_string(10).c_str());
+                //uart_putc(UART_ID, '>');
             }
 
             if (wake1Present == 0 &&
@@ -524,9 +524,9 @@ int main( void )
                 )
             {
                 //wake sound 6 is actually linked to 7: Kindness
-                uart_putc(UART_ID, '<');
-                uart_puts(UART_ID, std::to_string(7).c_str());
-                uart_putc(UART_ID, '>');
+                //uart_putc(UART_ID, '<');
+                //uart_puts(UART_ID, std::to_string(7).c_str());
+                //uart_putc(UART_ID, '>');
             }
 
             if (wake1Present == 0 &&
@@ -540,9 +540,9 @@ int main( void )
                 )
             {
                 //wake sound 7 is actually linked to 6: Integrity
-                uart_putc(UART_ID, '<');
-                uart_puts(UART_ID, std::to_string(6).c_str());
-                uart_putc(UART_ID, '>');
+                //uart_putc(UART_ID, '<');
+                //uart_puts(UART_ID, std::to_string(6).c_str());
+                //uart_putc(UART_ID, '>');
             }
 
             if (wake1Present == 0 &&
@@ -556,9 +556,9 @@ int main( void )
                 )
             {
                 //wake sound 8 is actually linkked to 4: Collaboration
-                uart_putc(UART_ID, '<');
-                uart_puts(UART_ID, std::to_string(4).c_str());
-                uart_putc(UART_ID, '>');
+                //uart_putc(UART_ID, '<');
+                //uart_puts(UART_ID, std::to_string(4).c_str());
+                //uart_putc(UART_ID, '>');
             }
 
 
