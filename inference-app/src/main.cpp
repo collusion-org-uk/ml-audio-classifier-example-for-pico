@@ -73,7 +73,7 @@ string resultKeyLess3 = "";
 bool counting = false;
 
 // number of readings to count
-int SAMPLE_WINDOW = 16;
+int SAMPLE_WINDOW = 32;
 
 // a variable to keep track of how many readings we have processed
 int sampleCount = 0;
@@ -329,16 +329,9 @@ int main( void )
         }
 
 // probably wakesound 2
-        if (r1.mlResults[0] > 0.9f &&
-            r2.mlResults[0] > 0.9f &&
-            r3.mlResults[0] > 0.9f &&
-            r4.mlResults[0] > 0.9f &&
-            r5.mlResults[0] > 0.9f &&
-            r6.mlResults[0] > 0.9f &&
-            r7.mlResults[0] > 0.9f &&
-            r8.mlResults[0] > 0.9f) {
+        if (r1.mlResults[1] > 0.7f) {
 
-            //printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 2);
+            printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 2);
             wake2Present++;
 
         }
@@ -405,13 +398,13 @@ int main( void )
             wake7Present++;
         }
 
-        if (r1.mlResults[7] > 0.9f) {
+        if (r1.mlResults[7] > 0.7f) {
             printf("\n===========================\n\nWAKE SOUND %d: DETECTED\n\n===========================\n\n", 8);
             wake8Present++;
         }
 
 
-        if (sampleCount) {
+        if (sampleCount> SAMPLE_WINDOW) {
             //report detected 
             printf("\n===========================\nWAKE SOUND1:\t%d\n", wake1Present);
             printf("WAKE SOUND2:\t%d\n", wake2Present);
@@ -621,12 +614,12 @@ int main( void )
 
         string resultKey = "";
 
-
+/*
         // if we detect zero background noise then start counting
         if (!counting && prediction.mlResults[8] < 0.001f) {
             counting = true;
         } 
-/*
+
         // if we are counting increment the number of times each category detected over SAMPLE_WINDOW
         if (counting) {
             aP = "0";
